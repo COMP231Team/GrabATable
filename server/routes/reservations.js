@@ -5,7 +5,8 @@ let mongoose = express.mongoose;
 let reservation = require('../models/reservations');
 
 router.get('/', (req, res) => {
-    //res.render('', { '});
+    //res.render('home',{title:"reservaio"});
+    
 })
 
 module.exports = router;
