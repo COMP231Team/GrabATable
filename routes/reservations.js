@@ -2,12 +2,9 @@ let express = require('express');
 let router = express.Router();
 let mongoose = express.mongoose;
 
-let reservation = require('../models/reservation');
+let reservationRouter = require('../controllers/reservations');
 
-router.get('/', (req, res) => {
-    //res.render('home',{title:"reservaio"});
-    
-})
+router.get('/book', reservationRouter.book);
 
 module.exports = router;
 
