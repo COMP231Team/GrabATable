@@ -3,3 +3,9 @@ exports.home = function(req, res) {
         title: 'Home'
     });
 };
+
+exports.restaurants = function(req, res) {
+    res.render('customer/restaurantList', { 
+        title: 'Restaurants'
+    });
+};
