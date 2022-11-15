@@ -1,4 +1,5 @@
-import Table from './tables'
+import Table from './tables';
+import Reservation from './reservations';
 let mongoose = require("mongoose");
 
 // create a model class just with questions
@@ -10,7 +11,8 @@ let Restaurant = mongoose.Schema(
     Address: String,
     Phone: Number,
     Capacity: Number,
-    ImageLink: String,
+    ImageLinks: [String],
+    Reservations: [Reservation],
     Tables: [Table]
   },
   {

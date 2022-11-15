@@ -8,9 +8,6 @@ let Table = mongoose.Schema(
     Available: Boolean,
     Duration: Number,
     Capacity: Number
-  },
-  {
-    collection: "tables",
   }
 );
 
