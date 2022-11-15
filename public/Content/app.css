@@ -1,0 +1,9 @@
+body {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#webLogo {
+    text-align: center;
+}
