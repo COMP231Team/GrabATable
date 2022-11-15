@@ -1,10 +1,16 @@
-const app = require('./server/config/app');
-const http = require('http');
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+ var app = require('./config/app');
+ //var debug = require('debug')('comp229.003.m2022:server');
+ var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
-
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
