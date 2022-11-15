@@ -1,6 +1,6 @@
 import Table from './tables';
 import Reservation from './reservations';
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 
 // create a model class just with questions
 let Restaurant = mongoose.Schema(
