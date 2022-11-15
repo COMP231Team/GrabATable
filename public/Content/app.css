@@ -1,9 +1,10 @@
 body {
-    width: 600px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
 }
 
 #webLogo {
+    margin-left: auto;
     text-align: center;
 }

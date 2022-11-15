@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "COMP231 project",
   "main": "server.js",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,10 +19,12 @@
   "homepage": "https://github.com/COMP231Team/GrabATable#readme",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "db": "^3.4.0",
     "ejs": "^3.1.8",
     "eslint": "^8.27.0",
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
+    "mongodb": "^4.11.0",
     "mongoose": "^6.7.2"
   }
 }
