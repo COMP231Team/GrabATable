@@ -1,5 +1,4 @@
 let express = require('express');
-//const surveys = require('../models/surveys');
 const router = express.Router();
 
 //create models
