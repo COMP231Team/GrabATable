@@ -29,11 +29,11 @@ app.use(express.static(path.join(__dirname, '../node_modules')));
 
 // Routers
 let indexRouter = require('../routes/index');
-let reservationRouter = require('../routes/reservations');
+let restaurantRouter = require('../routes/restaurant');
 
 // Routes
 app.use('/', indexRouter);
-app.use('/reservations', reservationRouter);
+app.use('/restaurant', restaurantRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
