@@ -1,4 +1,4 @@
-//import Table from './tables';
+import Table from './tables'; //Error here; Syntax error: cannot use import statement out of module. 
 let mongoose = require('mongoose');
 
 // create a model class just with questions
@@ -11,7 +11,7 @@ let Reservation = mongoose.Schema(
     Phone: String,
     Confirmed: Boolean, 
     Cancelled: Boolean,
-  //  Tables: [Table],
+    Tables: [Table],
     Duration: Number,
     Guests: Number,
     Notes: String
