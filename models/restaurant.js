@@ -1,8 +1,5 @@
 let mongoose = require('mongoose');
-let Table = require('./table');
-let Reservation = require('./reservation');
 
-// Restaurant Model
 let restaurantModel = mongoose.Schema(
   {
     Name: String,
@@ -12,11 +9,22 @@ let restaurantModel = mongoose.Schema(
     Phone: Number,
     Capacity: Number,
     ImageLinks: [String],
-    Reservations: [Reservation],
-    Tables: [Table]
+    Reservations: [{
+      Guest: String,
+      Email: String,
+      Phone: String,
+      NumberOfGuests: Number,
+      Date: Date,
+      TablesReserved: Number, 
+      Notes: String,
+    }],
+    Tables: [{
+      Capacity: Number,
+      Duration: Number
+    }],
   },
   {
-    collection: "restaurant",
+    collection: "restaurants",
   }
 );
 

@@ -3,13 +3,14 @@
     <div class="container">
       <br>
       <h1>Reservation</h1>
-      <form action="/action_page.php">
+      <form  method="POST">
         <div class="mb-3 mt-3">
+          <input type="text" class="form-control" name="title" value="<%= restaurant.Name %>" readonly="readonly">
           <label for="name" class="form-label">Name:</label>
           <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name">
         </div>
         <div class="mb-3 mt-3">
-            <label for="phone" class="form-label">Phone:</label>
+            <label for="phone" class="form-label">Phone:</label> 
             <input type="text" class="form-control" id="Phone" placeholder="Enter Phone" name="Phone">
           </div>
           <div class="mb-3 mt-3">
@@ -21,14 +22,6 @@
             <input type="date" class="form-control" id="Date" name="Date">
           </div>
           <div class="mb-3 mt-3">
-            <label for="time" class="form-label">Booking Time:</label>
-            <input type="time" class="form-control" id="Time" name="Time">
-          </div>
-                   <div class="mb-3 mt-3">
-            <label for="duration" class="form-label">Duration of stay:</label>
-            <input type="number" class="form-control" id="Duration" placeholder="Enter duration of stay(minutes)" name="Duration" max="210" min="30" step="30">
-          </div>
-          <div class="mb-3 mt-3">
             <label for="phone" class="form-label">Number of Guests:</label>
             <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="20" min="1">
           </div>
@@ -36,15 +29,7 @@
             <label for="notes">Additional Notes:</label>
             <textarea class="form-control" rows="5" id="Notes" name="Notes"></textarea>
           </div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" id="Confirmed" name="status" value="Confirmed" checked>Confirmed
-            <label class="form-check-label" for="Confirmed"></label>
-          </div>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" id="Cancelled" name="status" value="Cancelled">Cancelled
-            <label class="form-check-label" for="Cancelled"></label>
-          </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Check</button>
       </form>
     </div>
     
