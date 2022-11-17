@@ -1,0 +1,4 @@
+//connecting to database
+module.exports = {
+    "URI":"mongodb+srv://admin:iRw8V46DssgPxSRN@cluster0.x47dyvo.mongodb.net/COMP231?retryWrites=true&w=majority"
+  };
