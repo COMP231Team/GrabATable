@@ -6,7 +6,7 @@ let cookieParser = require('cookie-parser');
 let mongoose = require('mongoose');
 
 // Mongoose Connection
-let DB = require('./db')
+let DB = require('./db.js')
 mongoose.connect(process.env.URI || DB.URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 let mongoDB = mongoose.connection;
