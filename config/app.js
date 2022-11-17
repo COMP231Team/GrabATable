@@ -30,10 +30,12 @@ app.use(express.static(path.join(__dirname, '../node_modules')));
 // Routers
 let indexRouter = require('../routes/index');
 let restaurantRouter = require('../routes/restaurant');
+let reservationRouter = require('../routes/reservation');
 
 // Routes
 app.use('/', indexRouter);
 app.use('/restaurant', restaurantRouter);
+app.use('/reservation', reservationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
