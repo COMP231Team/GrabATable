@@ -1,19 +1,17 @@
 
 exports.
 restaurantList = function(req, res) {
-    res.render('customer/restaurantList', { 
+    res.render('restaurant/restaurantList', { 
         title: 'Restaurants'
     });
 };
 
 exports.editRestaurant = function(req, res) {
-    res.render('vendor/editRestaurant', { 
+    res.render('restaurant/editRestaurant', { 
         title: 'Edit Restaurant'
     });
 };
 
-exports.bookRestaurant = function(req, res) {
-    res.render('customer/bookRestaurant', { 
-        title: 'Book Table'
-    });
-};
+// ------------------------
+// TODO : view restaurant details
+// ------------------------
