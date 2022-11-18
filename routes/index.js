@@ -1,9 +1,6 @@
 let express = require('express');
 const router = express.Router();
 let controllerIndex = require('../controllers/index');
-// define the restaurant model
-let restaurant = require('../models/restaurant');
-
 
 // Routes
 router.get('/', controllerIndex.home);
