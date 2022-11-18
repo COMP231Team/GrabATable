@@ -1,14 +1,16 @@
 let express = require('express');
 let router = express.Router();
 
-let controllerRestaurant = require('../controllers/reservations');
+let controllerReservation = require('../controllers/reservations');
 
 // Routes
 // Get reservation list
-router.get('/list', controllerRestaurant.reservationList);
+router.get('/list', controllerReservation.reservationList);
 
 // Get reservation booking form
-router.get('/book', controllerRestaurant.book);
+router.get('/book/:id', controllerReservation.getBooking);
+// Post reservation booking form
+router.post("/book/:id", controllerReservation.postBooking)
 
 // ------------------------
 // TODO : modify reservation
