@@ -16,7 +16,7 @@ exports.getBooking = function(req, res, next) {
         res.end(err);
         } else {
         // console.log("restaurantDetails", restaurantDetails);
-        res.render('customer/bookRestaurant', { title: 'book', restaurant: restaurantDetails});
+        res.render('reservation/bookRestaurant', { title: 'book', restaurant: restaurantDetails});
         //should we have the information here so the fields they choose are limited to what's available
         }
     });

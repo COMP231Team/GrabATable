@@ -1,0 +1,9 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
+
+<h1><%=restaurant.Name%></h1>
+
+<a href="/reservation/book/<%=restaurant._id%>">reserve</a>
+<p>id: <%=restaurant._id%></p>
+      
+<%- include('../partials/footer.ejs'); %>
