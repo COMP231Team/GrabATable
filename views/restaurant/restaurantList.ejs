@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!--css section  -->
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/Content/images/ks.ico" />
+    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="/Content/app.css">
+</head>
+<body>
+
 <%- include('../partials/header'); %>
 <%- include('../partials/navbarCustomer'); %>
 
@@ -50,10 +67,11 @@
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title"><%= r.Name %></h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <p class="card-text"><%=r.Description %></p>
+                          
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                           <a href="/restaurant/details/<%=r._id%>">Details</a>
+                          <a href="/restaurant/edit/<%=r._id%>">Edit</a>
                         </div>
                       </div>
                     </div>
@@ -70,3 +88,9 @@
 
       
 <%- include('../partials/footer.ejs'); %>
+
+ <!--javascript section -->
+ <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+ <script src="/@fortawesome/fontawesome-free/js/all.min.js"></script>
+</body>
+</html>
