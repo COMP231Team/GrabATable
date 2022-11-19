@@ -9,7 +9,7 @@ let restaurantModel = mongoose.Schema(
     Phone: Number,
     Capacity: Number,
     ImageLinks: [String],
-    Reservations: [{
+    Reservations: [new mongoose.Schema({
       Guest: String,
       Email: String,
       Phone: String,
@@ -17,11 +17,11 @@ let restaurantModel = mongoose.Schema(
       Date: Date,
       TablesReserved: Number, 
       Notes: String,
-    }],
-    Tables: [{
+    })],
+    Tables: [new mongoose.Schema({
       Capacity: Number,
       Duration: Number
-    }],
+    })],
   },
   {
     collection: "restaurants",
