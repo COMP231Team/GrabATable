@@ -8,6 +8,8 @@ let controllerRestaurant = require('../controllers/restaurant');
 router.get('/list', controllerRestaurant.restaurantList);
 // Get  restaurant edit page
 router.get('/edit', controllerRestaurant.editRestaurant);
+// Get  restaurant details page
+router.get('/details/:id', controllerRestaurant.detailsOfRestaurant);
 
 // ------------------------
 // TODO : view restaurant details
