@@ -1,5 +1,13 @@
+let Restaurant = require('../models/restaurant');
+
 exports.home = function(req, res) {
-    res.render('index', { 
-        title: 'Home'
+    Restaurant.find((err, restaurants) => { 
+        if (err) {
+            return console.log(err);
+        }
+        return res.render('restaurant/restaurantList', { 
+            title: 'Restaurants',
+            restaurantList: restaurants
+        });
     });
 };
