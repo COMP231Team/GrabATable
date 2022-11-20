@@ -7,10 +7,15 @@ let controllerRestaurant = require('../controllers/restaurant');
 // Get restaurant list
 router.get('/list', controllerRestaurant.restaurantList);
 // Get  restaurant edit page
-router.get('/edit', controllerRestaurant.editRestaurant);
+router.get('/edit/:id', controllerRestaurant.editRestaurant);
 // Get  restaurant details page
 router.get('/details/:id', controllerRestaurant.detailsOfRestaurant);
 
+
+
+//router.put('/edit/:id', controllerRestaurant.editRestaurant);
+
+router.post('/edit/:id', controllerRestaurant.editRestaurant);
 // ------------------------
 // TODO : view restaurant details
 // ------------------------
