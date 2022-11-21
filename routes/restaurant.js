@@ -5,7 +5,7 @@ let controllerRestaurant = require('../controllers/restaurant');
 
 // Routes
 // Get restaurant list
-router.get('/list', controllerRestaurant.restaurantList);
+router.get('/', controllerRestaurant.restaurantList);
 // Get  restaurant edit page
 router.get('/edit/:id', controllerRestaurant.editRestaurant);
 // Get  restaurant details page
