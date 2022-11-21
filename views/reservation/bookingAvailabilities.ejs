@@ -1,0 +1,28 @@
+<%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading"><restaurant.Name></h1>
+        <p class="lead">Look for an available table below!</p>
+    </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            <% for(let i = 0; i < restaurant.length; i++) { %>
+            <div class="col-md-4">
+                <a href="#" class="btn btn-primary my-2"><%= restaurant %></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    </div>
+
+</main>
+      
+<%- include('../partials/footer.ejs'); %>
