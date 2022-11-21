@@ -7,6 +7,21 @@ exports.reservationList = function(req, res) {
     });
 };
 
+exports.availabilities = function(req, res) {
+    let restaurantId = req.params.id;
+
+    restaurant.findById(restaurantId, (err, restaurantDetails) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('reservation/bookingAvailabilities', { 
+                title: 'Reservations',
+                restaurant: restaurantDetails
+            });
+        }
+    });
+};
+
 // need restaurant id to book with specific restaurant- click restaurant page and book from there - no drop down in booking screen
 exports.getBooking = function(req, res, next) {
     let id = req.params.id;
