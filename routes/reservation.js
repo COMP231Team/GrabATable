@@ -12,9 +12,10 @@ router.get('/book/:id', controllerReservation.getBooking);
 // Post reservation booking form
 router.post("/book/:id", controllerReservation.postBooking)
 
-// ------------------------
-// TODO : modify reservation
-// ------------------------
+// Get reservation edit booking form
+router.get('/editBooking/:id', controllerReservation.getEditBooking);
+// Post reservation edit booking form
+router.post("/editBooking/:id", controllerReservation.postEditBooking)
 
 
 module.exports = router;
