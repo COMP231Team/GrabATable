@@ -4,9 +4,9 @@ let restaurantModel = mongoose.Schema(
   {
     Name: String,
     Description: String,
-    Email: String,
+    Website: String,
     Address: String,
-    Phone: Number,
+    Phone: String,
     Capacity: Number,
     ImageLinks: [String],
     CuisineTags: [String],
@@ -25,32 +25,32 @@ let restaurantModel = mongoose.Schema(
     })],
     HoursOfOperations: {
       Sunday: {
-        StartTime: Time,
-        EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       },
       Monday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       },
       Tuesday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       },
       Wednesday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       },
       Thrusday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       }, 
       Friday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       },
       Saturday: {
-          StartTime: Time,
-          EndTime: Time
+        StartTime: Date,
+        EndTime: Date
       }
     }
   },
