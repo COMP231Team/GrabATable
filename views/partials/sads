@@ -1,0 +1,110 @@
+Reservations: [
+    {
+        Date: Date,
+        [
+            {
+                ReservationID: mongoose.Schema.Types.ObjectId,
+                Guest: String,
+                Email: String,
+                Phone: String,
+                NumberOfGuests: Number,
+                Time: DateTime,
+                TablesReserved: Number, 
+                Notes: String,
+            }
+        ]
+    }
+]
+
+
+
+Reservations: [
+    {
+        Date: November 2 2022,
+        [
+            {
+                ReservationID: 7sdajkahsdkj,
+                Guest: 2,
+                Email: jsahmbi@lsd.ca,
+                Phone: 416-456-4565,
+                NumberOfGuests: 2,
+                Time: 1am,
+                TablesReserved: 2, 
+                Notes: String,
+            },
+
+            {
+                ReservationID: 57asdas98asjj,
+                Guest: 2,
+                Email: kevinhold@lsd.ca,
+                Phone: 416-545-5463,
+                NumberOfGuests: 2,
+                Time: 2am,
+                TablesReserved: 2, 
+                Notes: String,
+            }
+        ]
+    },
+
+    {
+        Date: November 3 2022,
+        [
+            {
+                ReservationID: 89sdfsd89sd,
+                Guest: 2,
+                Email: jsahmbi@lsd.ca,
+                Phone: 416-456-4565,
+                NumberOfGuests: 2,
+                Time: 3am,
+                TablesReserved: 2, 
+                Notes: String,
+            },
+
+            {
+                ReservationID: 97asd97a98,
+                Guest: 2,
+                Email: kevinhold@lsd.ca,
+                Phone: 416-545-5463,
+                NumberOfGuests: 2,
+                Time: 2am,
+                TablesReserved: 2, 
+                Notes: String,
+            }
+        ]
+    },
+]
+
+
+RestaurantModel.find((err, restaurantList) => {
+    if (err) {
+        console.error(err);
+        return res.status(400).json({
+            success: false,
+            message: getErrorMessage(err)
+        });
+    } else {
+        CuisineModel.find((err, cuisineList) => { 
+            if (err) {
+                console.error(err);
+                return res.status(400).json({
+                    success: false,
+                    message: getErrorMessage(err)
+                });
+            } else {
+                console.log(cuisineList);
+                res.render('restaurant/restaurantList', { 
+                    title: 'Restaurants',
+                    restaurantList: restaurantList,
+                    cuisineList: null
+                });
+            }
+        });
+    }
+});
+
+
+<% cuisineList.forEach(function(cuisine) { %>
+    <li>
+        <a href="#" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline"><%= cuisine.Name %>></span> </a>
+    </li>
+<% }); %>
