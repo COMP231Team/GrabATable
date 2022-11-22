@@ -1,13 +1,10 @@
 let express = require('express');
 const router = express.Router();
 let controllerIndex = require('../controllers/index');
+let controllerRestaurant = require('../controllers/restaurant');
 
 // Routes
-router.get('/', controllerIndex.home);
-
-/* GET home page. */
-router.get('/home', function(req, res, next) {
-  res.render('home', { title: 'Restaurants'});
-});
+router.get('/', controllerRestaurant.restaurantList);
+router.get('/:cuisine', controllerRestaurant.filterRestaurantList);
 
 module.exports = router;
