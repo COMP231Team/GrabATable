@@ -1,80 +1,69 @@
 <%- include('../partials/header'); %>
 <%- include('../partials/navbarCustomer'); %>
 
-<div class="container">
-  
-  <div class="container" >
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
-          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary bg-opacity-10 ">
-              <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                  
-                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                      <li class="nav-item" style="font-weight: bold;">
-                          <a href="#" class="nav-link align-middle px-0" style="color:darkslategray">
-                              ➚ <span class="ms-1 d-none d-sm-inline">Trending</span>
-                          </a>
-                     
-                      <li style="font-weight: bold;">
-                          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:darkslategray">
-                              🍴<span class="ms-1 d-none d-sm-inline">Cuisines</span> </a>
-                              <ul class="nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                <% cuisineList.forEach(function(cuisine) { %>
-                                <li>
-                                    <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
+<div class="container" >
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary bg-opacity-10 ">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item" style="font-weight: bold;">
+                        <a href="#" class="nav-link align-middle px-0" style="color:darkslategray">
+                            ➚ <span class="ms-1 d-none d-sm-inline">Trending</span>
+                        </a>
+                   
+                    <li style="font-weight: bold;">
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:darkslategray">
+                            🍴<span class="ms-1 d-none d-sm-inline">Cuisines</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                              <% cuisineList.forEach(function(cuisine) { %>
+                                <li class="nav-item" style="font-weight: bold;">
+                                  <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
                                 </li>
                                 <% }); %>
-                              </ul>
-                      </li>
-                     
-                  </ul>
-                  <hr>
-                  
-              </div>
-          </div>
-            <% restaurantList.forEach(function(r) { %>
-              <div class="col py-3" style="border: rgb(212, 209, 209) solid 2px;">
-                <div class="card mb-3" style="max-width: 1200px;">
-                    <div class="row g-6">
-                      <div class="col-md-4">
-                        <img src="<%= r.ImageLinks[0] %>" class="img-fluid rounded-start restaurant-img" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><%= r.Name %></h5>
-                          <p class="card-text"><%=r.Description %></p>
-                          
-                          <p class="card-text">
-                            <table class="table table-borderless">
-                              <tr>
-                                  <td class="h6">Address:</td>
-                                  <td><%= r.Address %></td>
-                              </tr>
-                              <tr>
-                                  <td class="h6">Website:</td>
-                                  <td><%= r.Website %></td>
-                              </tr>
-                              <tr>
-                                  <td class="h6">Phone:</td>
-                                  <td><%= r.Phone %></td>
-                              </tr>
-                          </table>
-                          <p>
-                            <a href="/reservation/availability/<%=r._id%>" class="btn btn-light my-2">Book Table</a>
-                            <a href="/restaurant/details/<%=r._id%>" class="btn btn-light my-2">View Restaurant</a>
-                            <a href="/restaurant/edit/<%=r._id%>" class="btn btn-light my-2">Edit</a>
-                          </p>
+                         
+                        </ul>
+                    </li>
+                   
+                </ul>
+                <hr>
+                
+            </div>
+        </div>
+        <div class="col py-3" style="border: rgb(212, 209, 209) solid 2px;">
 
-                          <p class="card-text"><small class="text-muted">
-                            <% r.CuisineTags.forEach(function(tag) { %>
-                              <button type="button" class="btn btn-outline-secondary btn-sm"><%= tag %></button>
-                            <% }); %>
-                          </small></p>
-                        </div>
-                      </div>
-                    </div>
+          <% restaurantList.forEach(function(r) { %>
+           
+              <div class="card mb-3" style="max-width: 1200px;">
+                <div class="row g-6">
+                  <div class="col-md-5">
+                    <img src="<%= r.ImageLinks[0] %>"  class="img-fluid rounded-start" alt="restaurant-img">
                   </div>
-                </div>
+                  <div class="col-md-7">
+                    <div class="card-body" style="font-family:Arial, Helvetica, sans-serif">
+                      <h5 class="card-title"><%= r.Name %></h5>
+                      <p class="card-text" style="margin-bottom:0.38em;"><%=r.Description %></p>
+                      
+                        <div style="margin-bottom:0.2em">Address: <%= r.Address %></div>
+                        <div style="margin-bottom:0.2em">Website: <%= r.Website %></div>
+                        <div style="margin-bottom:0.2em">Phone: <%= r.Phone %></div>   
+                      
+                        <div>
+                          <a href="/reservation/availability/<%=r._id%>" class="btn btn-secondary my-2">Book Table</a>
+                          <a href="/restaurant/details/<%=r._id%>" class="btn btn-secondary my-2">View Restaurant</a>
+                          <a href="/restaurant/edit/<%=r._id%>" class="btn btn-secondary my-2">Edit</a>
+                          <div>
+                            <% r.CuisineTags.forEach(function(tag) { %>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" style="border-radius: 35%;"><%= tag %></button>
+                          <% }); %>
+
+                          </div>
+                        </div>
+                     
+                    </div> 
+                  </div>
+                  </div>
               </div>
             <% }); %>
 
@@ -98,7 +87,3 @@
           </div>
       </div>
 
-
-  </div>
-    
-<%- include('../partials/footer.ejs'); %>
