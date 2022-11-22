@@ -9,7 +9,6 @@ let controllerReservation = require('../controllers/reservations');
 // Get reservation list
 router.get('/list', controllerReservation.reservationList);
 
-
 // Customer
 // Get available timing
 router.get('/availability/:id', controllerReservation.availabilities);

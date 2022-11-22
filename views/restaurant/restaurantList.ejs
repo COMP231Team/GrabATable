@@ -21,7 +21,7 @@
                               <ul class="nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                                 <% cuisineList.forEach(function(cuisine) { %>
                                 <li>
-                                    <a href="/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
+                                    <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
                                 </li>
                                 <% }); %>
                               </ul>
@@ -77,6 +77,24 @@
                 </div>
               </div>
             <% }); %>
+
+            <% if (restaurantList.length == 0) { %>
+              <div class="col py-3" style="border: rgb(212, 209, 209) solid 2px;">
+                <div class="card mb-3" style="max-width: 1200px;">
+                    <div class="row px-5">
+                      <div class="col-md-3">
+                        <i class="fa-solid fa-xmark img-fluid rounded-start error-icon"></i>
+                      </div>
+                      <div class="col-md-9">
+                        <div class="card-body">
+                          <h3>No Restaurants With Filter Applied Found!</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %>
           </div>
       </div>
 

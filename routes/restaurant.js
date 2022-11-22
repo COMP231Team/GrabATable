@@ -6,6 +6,10 @@ let controllerRestaurant = require('../controllers/restaurant');
 // Routes
 // Get restaurant list
 router.get('/', controllerRestaurant.restaurantList);
+
+// Filter By Cuisine
+router.get('/:cuisine', controllerRestaurant.filterRestaurantList);
+
 // Get  restaurant edit page
 router.get('/edit/:id', controllerRestaurant.editRestaurant);
 // Get  restaurant details page
