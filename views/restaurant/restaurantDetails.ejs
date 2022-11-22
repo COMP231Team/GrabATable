@@ -1,9 +1,86 @@
 <%- include('../partials/header'); %>
 <%- include('../partials/navbarCustomer'); %>
 
-<h1><%=restaurant.Name%></h1>
+<div class="container" style="font-family:Arial, Helvetica, sans-serif;color:darkslategray">
+    <div class="container-fluid">
+        <div class="row flex-nowrap bg-secondary bg-opacity-10 " >      
+            <div class="col-12 col-sm-5 col-md-9" style="display: flex; margin:0.5em;border:2px solid lightgray">
+                
+                    <div>
 
-<a href="/reservation/book/<%=restaurant._id%>">reserve</a>
-<p>id: <%=restaurant._id%></p>
+                    <div class="image-container" style="margin:0.3em">
+                      <img src="<%= restaurant.ImageLinks[0] %>" class="product-detail-image" />
+                    </div>
+                     <div style="display:flex">
+                    <% restaurant.ImageLinks.forEach(function(img) { %>
+                    <div class="small-images-container">
+                        <img src="<%= img %>" class=  "small-image"  /> 
+                    </div> 
+                    <% }); %>
+                     </div>
+                    </div>
+                   
+                    <div class="product-detail-desc">
+                      
+                        <h1><%=restaurant.Name%></h1>
+                        <p><%=restaurant.Description %></p>
+                        
+                        <div style="float:right; margin-top:200px;">
+                       <a href="/reservation/availability/<%=restaurant._id%>" class="btn btn-secondary my-2" style="margin-top:2em; ">Grab A Table</a>
+                       </div>
+                      </div>
+            
+            
+            </div>
+             <div class="sideBox">
+
+                <div class="hoursBox">
+                    <div style="text-align: center;">
+                        <b><i>HOURS OF OPERATION</i></b>
+                    </div>
+                    <div>
+                        Sunday &nbsp;<span> -</span>
+                    </div>
+                    
+                    <div>
+                        Monday<span>-</span>
+                    </div>
+                    <div>
+                        Tuesday<span>-</span>
+                    </div>
+                    <div>
+                        Wednesday<span>-</span>
+                    </div>
+                    <div>
+                        Thursday<span>-</span>
+                    </div>
+                    <div>
+                        Friday<span>-</span>
+                    </div>
+                    <div>
+                        Saturday<span>-</span>
+                    </div>  
+                </div>
+                <div class="contactBox">
+                    <div style="text-align: center;">
+                        <b><i>CONTACT US</i></b>
+                    </div>
+                    <div>☎&nbsp;<span><%=restaurant.Phone%></span></div>
+                    <div>✉&nbsp;<span><%=restaurant.Email%></span> </div>
+                </div>
+                <div class="locationBox">
+                    <div style="text-align: center;">
+                        <b><i>LOCATION</i></b>
+                    </div>
+                    <div>𖡡&nbsp;<span><%=restaurant.Address%></span></div>
+                </div>
+
+                
+             </div>
+             
+        </div>
+         
+    </div>
+
+</div>
       
-<%- include('../partials/footer.ejs'); %>
