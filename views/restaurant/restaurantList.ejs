@@ -12,23 +12,20 @@
                         <a href="#" class="nav-link align-middle px-0" style="color:darkslategray">
                             ➚ <span class="ms-1 d-none d-sm-inline">Trending</span>
                         </a>
-                   
+                    </li>
                     <li style="font-weight: bold;">
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:darkslategray">
-                            🍴<span class="ms-1 d-none d-sm-inline">Cuisines</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                              <% cuisineList.forEach(function(cuisine) { %>
-                                <li class="nav-item" style="font-weight: bold;">
-                                  <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
-                                </li>
-                                <% }); %>
-                         
+                        <a href="/restaurant" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:darkslategray">
+                            <span class="ms-1 d-none d-sm-inline">Cuisines</span> 
+                        </a>
+                        <ul class="nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                          <% cuisineList.forEach(function(cuisine) { %>
+                          <li>
+                              <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6" style="color:darkslategray"> <span class="d-none d-sm-inline">- <%= cuisine.Name %></span> </a>
+                          </li>
+                          <% }); %>
                         </ul>
                     </li>
-                   
                 </ul>
-                <hr>
-                
             </div>
         </div>
         <div class="col py-3" style="border: rgb(212, 209, 209) solid 2px;">
@@ -38,27 +35,36 @@
               <div class="card mb-3" style="max-width: 1200px;">
                 <div class="row g-6">
                   <div class="col-md-5">
-                    <img src="<%= r.ImageLinks[0] %>"  class="img-fluid rounded-start" alt="restaurant-img">
+                    <img src="<%= r.ImageLinks[0] %>"  class="img-fluid rounded-start restaurant-img" alt="restaurant-img">
                   </div>
                   <div class="col-md-7">
                     <div class="card-body" style="font-family:Arial, Helvetica, sans-serif">
                       <h5 class="card-title"><%= r.Name %></h5>
                       <p class="card-text" style="margin-bottom:0.38em;"><%=r.Description %></p>
                       
-                        <div style="margin-bottom:0.2em">Address: <%= r.Address %></div>
-                        <div style="margin-bottom:0.2em">Website: <%= r.Website %></div>
-                        <div style="margin-bottom:0.2em">Phone: <%= r.Phone %></div>   
-                      
+                        <table class="table table-borderless my-2">
+                          <tr>
+                              <td class="h6"><b>Address:</b></td>
+                              <td><%= r.Address %></td>
+                          </tr>
+                          <tr>
+                              <td class="h6"><b>Website:</b></td>
+                              <td><%= r.Website %></td>
+                          </tr>
+                          <tr>
+                              <td class="h6"><b>Phone:</b></td>
+                              <td><%= r.Phone %></td>
+                          </tr>
+                        </table>
+                        <a href="/reservation/availability/<%=r._id%>" class="btn btn-secondary my-2">Book Table</a>
+                        <a href="/restaurant/details/<%=r._id%>" class="btn btn-secondary my-2">View Restaurant</a>
+                        <a href="/restaurant/edit/<%=r._id%>" class="btn btn-secondary my-2">Edit</a>
                         <div>
-                          <a href="/reservation/availability/<%=r._id%>" class="btn btn-secondary my-2">Book Table</a>
-                          <a href="/restaurant/details/<%=r._id%>" class="btn btn-secondary my-2">View Restaurant</a>
-                          <a href="/restaurant/edit/<%=r._id%>" class="btn btn-secondary my-2">Edit</a>
-                          <div>
-                            <% r.CuisineTags.forEach(function(tag) { %>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" style="border-radius: 35%;"><%= tag %></button>
+                          <% r.CuisineTags.forEach(function(tag) { %>
+                          <a href="/restaurant/<%= tag %>">
+                            <button type="button" class="btn mt-3 mb-1 btn-outline-secondary btn-sm"><%= tag %></button>
+                          </a>
                           <% }); %>
-
-                          </div>
                         </div>
                      
                     </div> 
