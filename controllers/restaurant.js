@@ -27,7 +27,7 @@ module.exports.restaurantList = function (req, res) {
                     message: getErrorMessage(err)
                 });
             } else {
-                CuisineModel.find({}, (err, cuisineList) => { 
+                CuisineModel.find({}).sort('Name').exec((err, cuisineList) => { 
                     if (err) {
                         console.error(err);
                         return res.status(400).json({
@@ -54,40 +54,70 @@ module.exports.restaurantList = function (req, res) {
 };
 
 module.exports.filterRestaurantList = function (req, res) {
-    let cuisine = req.params.cuisine;
+    let filter = req.params.cuisine;
     try {
-        RestaurantModel.find({CuisineTags: cuisine }, (err, restaurantList) => {
-            if (err) {
-                console.error(err);
-                return res.status(400).json({
-                    success: false,
-                    message: getErrorMessage(err)
-                });
-            } else {
-                CuisineModel.find({}, (err, cuisineList) => { 
-                    if (err) {
-                        console.error(err);
-                        return res.status(400).json({
-                            success: false,
-                            message: getErrorMessage(err)
-                        });
-                    } else {
-                        res.render('restaurant/restaurantList', { 
-                            title: 'Restaurants',
-                            restaurantList: restaurantList,
-                            cuisineList: cuisineList
-                        });
-                    }
-                });
-            }
-        })
+        if (filter == "trending") {
+            RestaurantModel.find({$addFields: {numberReservations: {$size: "$Reservations" }}}).sort({'reservationCount' : -1}).exec((err, restaurantList) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(400).json({
+                        success: false,
+                        message: getErrorMessage(err)
+                    });
+                } else {
+                    console.log(restaurantList[0].numberReservations);
+                    CuisineModel.find({}).sort('Name').exec((err, cuisineList) => { 
+                        if (err) {
+                            console.error(err);
+                            return res.status(400).json({
+                                success: false,
+                                message: getErrorMessage(err)
+                            });
+                        } else {
+                            res.render('restaurant/restaurantList', { 
+                                title: 'Restaurants',
+                                restaurantList: restaurantList,
+                                cuisineList: cuisineList
+                            });
+                        }
+                    });
+                }
+            })
+
+        } else {
+            RestaurantModel.find({CuisineTags: filter }, (err, restaurantList) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(400).json({
+                        success: false,
+                        message: getErrorMessage(err)
+                    });
+                } else {
+                    CuisineModel.find({}, (err, cuisineList) => { 
+                        if (err) {
+                            console.error(err);
+                            return res.status(400).json({
+                                success: false,
+                                message: getErrorMessage(err)
+                            });
+                        } else {
+                            res.render('restaurant/restaurantList', { 
+                                title: 'Restaurants',
+                                restaurantList: restaurantList,
+                                cuisineList: cuisineList
+                            });
+                        }
+                    });
+                }
+            })
+            
+        } 
     } catch (error) {
         return res.status(400).json({
             success: false,
             message: getErrorMessage(error)
         });
     }
-
 };
 
 // GET edit restaurant page
