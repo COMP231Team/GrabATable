@@ -5,21 +5,21 @@
     <div class="container-fluid">
         <div class="row flex-nowrap bg-secondary bg-opacity-10 " >      
             <div class="col-12 col-sm-5 col-md-9" style="display: flex; margin:0.5em;border:2px solid lightgray">
-                
                     <div>
-
                     <div class="image-container" style="margin:0.3em">
-                      <img src="<%= restaurant.ImageLinks[0] %>" class="product-detail-image" />
+                      <img id="mainImg" src="<%= restaurant.ImageLinks[0] %>" class="product-detail-image" />
                     </div>
                      <div style="display:flex">
-                    <% restaurant.ImageLinks.forEach(function(img) { %>
+                        
+                   <% var index = 2 %> 
+                        <%  for(let idx =0;idx < restaurant.ImageLinks.length; idx++ ){  %>         
                     <div class="small-images-container">
-                        <img src="<%= img %>" class=  "small-image"  /> 
+                        <img src="<%= restaurant.ImageLinks[idx]%>" class=  "small-image"  />                   
                     </div> 
-                    <% }); %>
+                    <%  } %> 
+                 
                      </div>
-                    </div>
-                   
+                    </div>      
                     <div class="product-detail-desc">
                       
                         <h1><%=restaurant.Name%></h1>
@@ -28,9 +28,7 @@
                         <div style="float:right; margin-top:200px;">
                        <a href="/reservation/availability/<%=restaurant._id%>" class="btn btn-secondary my-2" style="margin-top:2em; ">Grab A Table</a>
                        </div>
-                      </div>
-            
-            
+                      </div>            
             </div>
              <div class="sideBox">
 
@@ -83,4 +81,14 @@
     </div>
 
 </div>
-      
+<script>                       
+    let smallImages = document.getElementsByClassName("small-image");
+     let mainImage = document.getElementById("mainImg");
+    for(let i =0;i < smallImages.length; i++)
+    {
+       smallImages[i].onclick = function(){
+           mainImage.src = this.src;
+       }
+    } 
+  </script>    
+
