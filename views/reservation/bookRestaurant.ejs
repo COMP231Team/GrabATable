@@ -19,18 +19,26 @@
           </div>
           <div class="mb-3 mt-3">
             <label for="phone" class="form-label">Booking Date:</label>
-            <input type="date" class="form-control" id="Date" name="Date">
+            <input type="text" class="form-control" name="Date" value="<%= date %>" readonly="readonly">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="phone" class="form-label">Booking Time:</label>
+            <input type="text" class="form-control" name="Time" value="<%= time %>:00" readonly="readonly">
           </div>
           <div class="mb-3 mt-3">
             <label for="phone" class="form-label">Number of Guests:</label>
-            <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="20" min="1">
+            <input type="number" class="form-control" id="Guests" value="<%=guests%>" name="Guests" max="6" min="1">
           </div>
           <div class="mb-3 mt-3">
             <label for="notes">Additional Notes:</label>
             <textarea class="form-control" rows="5" id="Notes" name="Notes"></textarea>
           </div>
-        <button type="submit" class="btn btn-primary">Check</button>
+        <button type="submit" class="btn btn-primary">Confirm Reservation</button>
       </form>
+      <br>
+      <br>
+      <br>
+      <br>
     </div>
     
 <%- include('../partials/footer'); %>
