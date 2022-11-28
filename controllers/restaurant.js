@@ -65,7 +65,6 @@ module.exports.filterRestaurantList = function (req, res) {
                         message: getErrorMessage(err)
                     });
                 } else {
-                    console.log(restaurantList[0].numberReservations);
                     CuisineModel.find({}).sort('Name').exec((err, cuisineList) => { 
                         if (err) {
                             console.error(err);
@@ -122,15 +121,12 @@ module.exports.filterRestaurantList = function (req, res) {
 
 // GET edit restaurant page
 module.exports.editRestaurant = function (req, res) {
-    
-    console.log(req.method)
     if(req.method == 'GET'){
     RestaurantModel.findById(req.params.id, function(err, restaurantDetails){
         if(err){
             console.log(err);
            res.end(err);
         } else {
-            //console.log(restaurantDetails)
             res.render('restaurant/editRestaurant', 
             {title:'Edit Restaurant',restaurant: restaurantDetails});
             
@@ -157,7 +153,6 @@ module.exports.editRestaurant = function (req, res) {
                 console.log(err);
                 res.end(err);
                 } else {
-                console.log('success!!');
                 res.redirect('/restaurant/list')
                 }
         });
@@ -168,7 +163,6 @@ module.exports.editRestaurant = function (req, res) {
 // GET details page
 module.exports.detailsOfRestaurant = function (req, res) {
     RestaurantModel.findById(req.params.id, function(err, restaurant){
-        console.log(restaurant);
         res.render('restaurant/restaurantDetails', { 
             title: restaurant.Name,
             restaurant: restaurant

@@ -19,10 +19,6 @@ let restaurantModel = mongoose.Schema(
       TablesReserved: Number, 
       Notes: String,
     })],
-    Tables: [new mongoose.Schema({
-      Capacity: Number,
-      Duration: Number
-    })],
     HoursOfOperations: {
       Sunday: {
         StartTime: Date,

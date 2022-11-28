@@ -12,14 +12,25 @@
 
     <div class="album py-5 bg-light">
     <div class="container">
-
-        <div class="row">
-            <% for(let i = 0; i < restaurant.length; i++) { %>
-            <div class="col-md-4">
-                <a href="#" class="btn btn-primary my-2"><%= restaurant %></a>
-            </div>
-            <% } %>
-        </div>
+          <% if(availableTimes) {%>
+            <% for(let [key, value] of availableTimes.entries()) { %>
+                <tr><td class="text-left col-12"><input type="text" readonly="readonly" id="timeslot" name="timeslot" value="<%=key %>:00"  ></td>
+                <a href="/reservation/book/<%=restaurant.id%>/<%=date%>/<%=key%>/<%=guests%>" class="btn btn-secondary my-2">Reserve Time</a>
+                </tr>
+                <% } %>
+            <% } else { %>
+                <form  method="POST">
+                    <div class="mb-3 mt-3">
+                    <label for="Date" class="form-label">Booking Date:</label>
+                    <input type="date" class="form-control" id="Date" name="Date">
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="Guests" class="form-label">Number of Guests:</label>
+                    <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="6" min="1">
+                  </div>
+                    <button type="submit" class="btn btn-primary">Show Available Times</button>
+                </form>
+                <% } %>
     </div>
     </div>
 

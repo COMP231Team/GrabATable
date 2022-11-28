@@ -16,7 +16,61 @@ exports.availabilities = function(req, res) {
         } else {
             res.render('reservation/bookingAvailabilities', { 
                 title: 'Reservations',
-                restaurant: restaurantDetails
+                restaurant: restaurantDetails,
+                availableTimes: null,
+                date: "",
+                guests: ""
+            });
+        }
+    });
+};
+
+exports.postAvailabilities = function(req, res) {
+    let restaurantId = req.params.id;
+    const date = req.body.Date;
+    let requestedDate = new Date(date);
+    let requestedGuests = req.body.Guests;
+    restaurant.findById(restaurantId, (err, restaurantDetails) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+            } else {
+            const dateString = date;
+            const reservations =  restaurantDetails.Reservations.filter(res => {
+                return res.Date >= requestedDate
+            });
+            const availabilityMap = new Map();
+            const hours = [11, 13, 17, 19, 21];
+            if(reservations.length === 0){
+                for (let i = 0; i < hours.length; i++){
+                    availabilityMap.set(hours[i], restaurantDetails.Capacity)
+                };
+            }else{
+            const capacityMap = new Map();
+            for (const res of reservations){
+                const testResDate = new Date(res.Date)
+                if(capacityMap.get(testResDate.getHours())){
+                    const currentCapcity = capacityMap.get(testResDate.getHours());
+                    capacityMap.set(testResDate.getHours(), res.NumberOfGuests + currentCapcity)
+                }else{
+                    capacityMap.set(testResDate.getHours(), res.NumberOfGuests)
+                }
+            }
+            for (let i = 0; i < hours.length; i++){
+                if(!capacityMap.get(hours[i])){
+                    availabilityMap.set(hours[i], restaurantDetails.Capacity) 
+                } 
+                if(restaurantDetails.Capacity - capacityMap.get(hours[i]) >= parseInt(requestedGuests)){
+                    availabilityMap.set(hours[i], restaurantDetails.Capacity - capacityMap.get(hours[i]))
+                }
+            };
+        }
+            res.render('reservation/bookingAvailabilities', { 
+                title: 'Reservations',
+                restaurant: restaurantDetails,
+                availableTimes: availabilityMap,
+                date: dateString,
+                guests: requestedGuests
             });
         }
     });
@@ -25,37 +79,38 @@ exports.availabilities = function(req, res) {
 // need restaurant id to book with specific restaurant- click restaurant page and book from there - no drop down in booking screen
 exports.getBooking = function(req, res, next) {
     let id = req.params.id;
+    let date = req.params.date;
+    let time = req.params.time;
+    let guests = req.params.guests;
     restaurant.findById(id, (err, restaurantDetails) => {
         if (err) {
         console.log(err);
         res.end(err);
         } else {
-        // console.log("restaurantDetails", restaurantDetails);
-        res.render('reservation/bookRestaurant', { title: 'book', restaurant: restaurantDetails});
+        res.render('reservation/bookRestaurant', { title: 'book', restaurant: restaurantDetails, date: date, time: time, guests: guests});
         //should we have the information here so the fields they choose are limited to what's available
         }
     });
 };
   
 exports.postBooking = function(req, res, next) {
-    console.log('req.body', req.body);
+    const dateTime = `${req.body.Date} ${req.body.Time}`
 
     let id = req.params.id;
     let reservation = ({
         Guest: req.body.Name,
         Phone: req.body.Phone,
         Email: req.body.Email,
-        Date: Date.parse(req.body.Date),
+        Date: Date.parse(dateTime),
         NumberOfGuests: parseInt(req.body.Guests),
         Notes: req.body.Notes,
-        TablesReserved: parseInt(req.body.Guests) / 2,
+        TablesReserved: Math.round(parseInt(req.body.Guests) / 2),
     });
     restaurant.updateOne({ _id: id }, {$push: {Reservations: reservation}}, (err) => {
         if (err) {
         console.log(err);
         res.end(err);
         } else {
-        console.log('success!!');
         res.redirect('/');
         }
     });
