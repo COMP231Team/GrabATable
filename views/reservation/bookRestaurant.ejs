@@ -1,11 +1,14 @@
 <%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
 
-    <div class="container">
+    <div class="container" style="width:60%">
       <br>
-      <h1>Reservation</h1>
+      
       <form  method="POST">
         <div class="mb-3 mt-3">
-          <input type="text" class="form-control" name="title" value="<%= restaurant.Name %>" readonly="readonly">
+          <div style="text-align: center; font-family: cursive;">
+          <h3 ><%= restaurant.Name %></h3>
+          </div>
           <label for="name" class="form-label">Name:</label>
           <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name">
         </div>
@@ -33,8 +36,10 @@
             <label for="notes">Additional Notes:</label>
             <textarea class="form-control" rows="5" id="Notes" name="Notes"></textarea>
           </div>
-        <button type="submit" class="btn btn-primary">Confirm Reservation</button>
-        <a href="/reservation/availability/<%=restaurant._id%>" class="btn btn-secondary my-2">Change Reservation</a>
+          <div style="text-align:center">
+            <button  type="submit" class="btn btn-secondary">Confirm Reservation</button>
+          </div>
+        
       </form>
       <br>
       <br>
