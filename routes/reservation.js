@@ -8,6 +8,8 @@ let controllerReservation = require('../controllers/reservations');
 // Vendor
 // Get reservation list
 router.get('/list', controllerReservation.reservationList);
+//post reservation list
+router.post('/list', controllerReservation.postreservationList);
 
 // Customer
 // Get available timing
