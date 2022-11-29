@@ -2,10 +2,25 @@
 let restaurant = require('../models/restaurant');
 
 exports.reservationList = function(req, res) {
-    res.render('reservation/reservationList', { 
-        title: 'Reservations'
+  res.render('reservation/reservationList', { 
+    title: 'Reservations',
+    restaurant: ""
     });
-};
+  };
+   
+  exports.postreservationList = function(req, res, next) {
+    const restaurantName = req.body.Name;
+    restaurant.findOne({Name:restaurantName},(err, restaurantDetails) => {
+      if (err) {
+          console.log(err);
+      } else {
+    res.render('reservation/reservationList', { 
+      title: 'Reservations',
+      restaurant:restaurantDetails
+      });
+     }
+     }); 
+}
 
 exports.availabilities = function(req, res) {
     let restaurantId = req.params.id;
