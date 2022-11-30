@@ -9,6 +9,7 @@ let restaurantModel = mongoose.Schema(
     Phone: String,
     Capacity: Number,
     ImageLinks: [String],
+    Menu:String,
     CuisineTags: [String],
     Reservations: [new mongoose.Schema({
       Guest: String,
@@ -18,6 +19,7 @@ let restaurantModel = mongoose.Schema(
       Date: Date,
       TablesReserved: Number, 
       Notes: String,
+      
     })],
     HoursOfOperations: {
       Sunday: {

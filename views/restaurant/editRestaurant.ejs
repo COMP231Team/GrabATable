@@ -6,16 +6,16 @@
       <form  method="POST">
         <div class="mb-3 mt-3">
           <label for="name" class="form-label">Name of Restaurant:</label>
-          <input type="text" class="form-control" id="Name" name="Name"  placeholder="Enter Restaurant Name" value=" <%=restaurant.Name%>">
+          <input type="text" class="form-control" id="Name" name="Name"  placeholder="Enter Restaurant Name" value= "<%=restaurant.Name%>">
         </div>
         <div class="mb-3 mt-3">
             <label for="comment">Description:</label>
-            <textarea class="form-control" rows="5" id="Description"  name="Description" value="<%=restaurant.Description%>"></textarea>
+            <textarea class="form-control" rows="5" id="Description"  name="Description" value="<%=restaurant.Description%>"><%=restaurant.Description%></textarea>
           </div>
 
           <div class="mb-3 mt-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email" value="<%=restaurant.Email%>">
+            <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email" value=<%=restaurant.Email%>>
           </div>
           <div class="mb-3 mt-3">
             <label for="address" class="form-label">Address:</label>
@@ -23,7 +23,7 @@
           </div>
           <div class="mb-3 mt-3">
             <label for="phone" class="form-label">Phone:</label>
-            <input type="text" class="form-control" id="Phone" placeholder="Enter Phone number" name="Phone" value="<%=restaurant.Phone%>">
+            <input type="text" class="form-control" id="Phone" placeholder="Enter Phone number" name="Phone" value=<%=restaurant.Phone%>>
           </div>
           <div class="mb-3 mt-3">
             <label for="capacity" class="form-label">Capacity:</label>
@@ -31,7 +31,11 @@
           </div>
           <div class="mb-3 mt-3">
             <label for="capacity" class="form-label">Images:</label>
-            <input type="text" class="form-control" id="ImageLinks" placeholder="Enter links seperated by comma" name="ImageLinks" value="<%=restaurant.ImageLinks%>">
+            <input type="text" class="form-control" id="ImageLinks" placeholder="Enter links seperated by comma"  value="<%=restaurant.ImageLinks%>" name="ImageLinks">
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="capacity" class="form-label">Menu:<%=restaurant.Email%></label>
+            <input type="text" class="form-control" id="Menu" placeholder="Enter link for menu" value="<%=restaurant.Menu%>"name="Menu" >
           </div>
           
 

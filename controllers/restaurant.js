@@ -122,13 +122,14 @@ module.exports.filterRestaurantList = function (req, res) {
 // GET edit restaurant page
 module.exports.editRestaurant = function (req, res) {
     if(req.method == 'GET'){
-    RestaurantModel.findById(req.params.id, function(err, restaurantDetails){
+    RestaurantModel.findById(req.params.id, function(err, restaurant){
         if(err){
             console.log(err);
            res.end(err);
         } else {
+            console.log(restaurant.Menu);
             res.render('restaurant/editRestaurant', 
-            {title:'Edit Restaurant',restaurant: restaurantDetails});
+            {title:'Edit Restaurant',restaurant: restaurant});
             
         }
     })
@@ -140,20 +141,22 @@ module.exports.editRestaurant = function (req, res) {
         let uPhone = req.body.Phone;
         let uCapacity = req.body.Capacity;
         let uImageUrl = req.body.ImageLinks;
+        let uMenuUrl = req.body.Menu;
 
-        Restaurant.findByIdAndUpdate(req.params.id,{$set:{Name : uName,
+        RestaurantModel.findByIdAndUpdate(req.params.id,{$set:{Name : uName,
             Description:uDescription,
             Email:uEmail,
             Address:uAddress,
             Phone:uPhone,
             Capacity:uCapacity,
-            ImageLinks:uImageUrl
+            ImageLinks:uImageUrl,
+            Menu:uMenuUrl
         }},(err)=>{
             if (err) {
                 console.log(err);
                 res.end(err);
                 } else {
-                res.redirect('/restaurant/list')
+                res.redirect('/restaurant')
                 }
         });
     }
