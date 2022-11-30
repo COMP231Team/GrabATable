@@ -127,7 +127,6 @@ module.exports.editRestaurant = function (req, res) {
             console.log(err);
            res.end(err);
         } else {
-            console.log(restaurant.Menu);
             res.render('restaurant/editRestaurant', 
             {title:'Edit Restaurant',restaurant: restaurant});
             
