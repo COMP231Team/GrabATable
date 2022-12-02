@@ -143,12 +143,13 @@ exports.postBooking = function(req, res, next) {
             console.log(err);
             res.end(err);
             } else {
+              var dateString= new Date(reservation.Date);
               var message = {
                 to: reservation.Email,
                 from: "team.Comp.231@gmail.com",
                 subject: "Booking confirmed!",
                 text: "Your Reservation Details",
-                html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+restaurantDetails.Date+" has been confirmed! Press this <a href='/restaurant'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"
+                html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+dateString.toString()+" has been confirmed! Press this <a href='/restaurant'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"
               };
 
               transporter.sendMail(message, (err, info) => {
