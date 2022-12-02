@@ -26,7 +26,5 @@ router.get('/editBooking/:id', controllerReservation.getEditBooking);
 // Post reservation edit booking form
 router.post("/editBooking/:id", controllerReservation.postEditBooking)
 
-router.get("/sendEmail", controllerReservation.sendEmail)
-
 module.exports = router;
 
