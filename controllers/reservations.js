@@ -1,5 +1,6 @@
 // define the restaurant model
 let restaurant = require('../models/restaurant');
+let nodemailer = require('nodemailer');
 
 exports.reservationList = function(req, res) {
   res.render('reservation/reservationList', { 
@@ -126,7 +127,42 @@ exports.postBooking = function(req, res, next) {
         console.log(err);
         res.end(err);
         } else {
-        res.redirect('/');
+           //EMAIL FUNCTIONALITY CODE
+           let transporter = nodemailer.createTransport({
+            host: "smtp.sendgrid.net",
+            port: 587,
+            secure: false,
+            auth: {
+              user: "apikey",
+              pass: "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"
+            },
+          });
+
+          restaurant.findById(id, (err, restaurantDetails) => {
+            if (err) {
+            console.log(err);
+            res.end(err);
+            } else {
+              var message = {
+                to: reservation.Email,
+                from: "team.Comp.231@gmail.com",
+                subject: "Booking confirmed!",
+                text: "Your Reservation Details",
+                html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+restaurantDetails.Date+" has been confirmed! Press this <a href='/restaurant'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"
+              };
+
+              transporter.sendMail(message, (err, info) => {
+                if(err){
+                  console.log(""+err.message);
+                }
+                else{
+                  console.log(""+info.envelope)
+                }
+              })
+            }
+          });
+
+          res.redirect('/');
         }
     });
 }
