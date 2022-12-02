@@ -1,5 +1,36 @@
 // define the restaurant model
 let restaurant = require('../models/restaurant');
+let nodemailer = require('nodemailer');
+const e = require('connect-flash');
+
+exports.sendEmail = function(req,res){
+  let transporter = nodemailer.createTransport({
+    host: "smtp.sendgrid.net",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "apikey",
+      pass: "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"
+    },
+  });
+  
+  var message = {
+    to: "abi.manoharan97@gmail.com",
+    from: "team.Comp.231@gmail.com",
+    subject: "Message title",
+    text: "Plaintext version of the message",
+    html: "<p>HTML version of the message</p>"
+  };
+
+  transporter.sendMail(message, (err, info) => {
+    if(err){
+      res.render(""+err.message);
+    }
+    else{
+      res.render(""+info)
+    }
+  })
+}
 
 exports.reservationList = function(req, res) {
   res.render('reservation/reservationList', { 
