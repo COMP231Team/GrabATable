@@ -53,6 +53,10 @@ body {
 
 }
 
+.restaurant-detail-button-container {
+  margin-top: 25%;
+}
+
 .small-images-container{
   display: flex;
   gap: 10px;
@@ -75,15 +79,7 @@ body {
   height: 70px;
   cursor: pointer;
 }
-.product-detail-desc{
-  margin:0.5em;
-}
-.product-detail-desc h4{
-  margin-top: 10px;
-}
-.product-detail-desc p{
-  margin-top: 10px;
-}
+
 .hoursBox{
   width: 22%;
   border:2px solid lightgray;

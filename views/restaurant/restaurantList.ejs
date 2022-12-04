@@ -88,7 +88,7 @@
                   </tr>
                   <tr>
                     <td class="h6"><b>Phone:</b></td>
-                    <td><%= r.Phone %></td>
+                    <td><%= '(' + r.Phone.substring(0,3) + ') ' + r.Phone.substring(3,6) + '-' + r.Phone.substring(6,10) %></td>
                   </tr>
                 </table>
                 <a
