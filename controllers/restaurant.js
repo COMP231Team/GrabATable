@@ -53,41 +53,43 @@ module.exports.restaurantList = function (req, res) {
   }
 };
 
-module.exports.filterRestaurantList = function (req, res) {
+module.exports.filterRestaurantList = async (req, res) => {
   let filter = req.params.cuisine;
   try {
     if (filter == "trending") {
-      RestaurantModel.find({
-        $addFields: { numberReservations: { $size: "$Reservations" } },
-      })
-        .sort({ reservationCount: -1 })
-        .exec((err, restaurantList) => {
-          if (err) {
-            console.error(err);
-            return res.status(400).json({
-              success: false,
-              message: getErrorMessage(err),
-            });
-          } else {
-            CuisineModel.find({})
-              .sort("Name")
-              .exec((err, cuisineList) => {
-                if (err) {
-                  console.error(err);
-                  return res.status(400).json({
-                    success: false,
-                    message: getErrorMessage(err),
-                  });
-                } else {
-                  res.render("restaurant/restaurantList", {
-                    title: "Restaurants",
-                    restaurantList: restaurantList,
-                    cuisineList: cuisineList,
-                  });
-                }
-              });
+      const restaurantList = await RestaurantModel.aggregate([
+        {
+          $project:{
+            Name: 1,
+            Address: 1,
+            Website: 1,
+            Phone: 1,
+            ImageLinks: 1,
+            CuisineTags: 1,
+            Description: 1,
+            numOfRes: {$cond:{if: {$isArray: "$Reservations"}, then: {$size: "$Reservations"}, else: "0"}}
           }
-        });
+        },
+        {$sort: {numOfRes:-1}}
+      ])
+
+      CuisineModel.find({})
+          .sort("Name")
+          .exec((err, cuisineList) => {
+            if (err) {
+              console.error(err);
+              return res.status(400).json({
+                success: false,
+                message: getErrorMessage(err),
+              });
+            } else {
+              res.render("restaurant/restaurantList", {
+                title: "Restaurants",
+                restaurantList: restaurantList,
+                cuisineList: cuisineList,
+              });
+            }
+          });
     } else {
       RestaurantModel.find({ CuisineTags: filter }, (err, restaurantList) => {
         if (err) {

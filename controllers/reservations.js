@@ -191,7 +191,7 @@ exports.getEditBooking = function (req, res, next) {
       let cast = new Date(Date.parse(reserve.Date));
       let fixedDate = cast.toISOString();
       fixedDate = fixedDate.split("T");
-      res.render('reservation/editBooking', { reservation: reserve, resDate: fixedDate[0], restaurantName: reservationDetails.Name });
+      res.render('reservation/editBooking', { title: reserve.Name, reservation: reserve, resDate: fixedDate[0], restaurantName: reservationDetails.Name });
     }
   });
 }
