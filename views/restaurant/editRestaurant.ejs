@@ -76,27 +76,90 @@
       /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
-      <label for="tags" class="form-label">Tags:</label>
+      
+      <label for="CuisineTags" class="form-label">Cuisine:</label>
+      <fieldset>
+        <div>
+          <input type="checkbox" id="Bar" name="CuisineTags[]" value="Bar">
+          <label for="scales">Bar</label>
+        </div>
+        <div>
+          <input type="checkbox" id="FastFood" name="CuisineTags[]" value="Fast Food">
+          <label for="horns">Fast Food</label>
+        </div>
+        <div>
+          <input type="checkbox" id="French" name="CuisineTags[]"value="French">
+          <label for="horns">French</label>
+        </div>
+        <div>
+          <input type="checkbox" id="Hakka" name="CuisineTags[]"value="Hakka">
+          <label for="horns">Hakka</label>
+        </div>
+        <div>
+          <input type="checkbox" id="Indian" name="CuisineTags[]"value="Indian">
+          <label for="horns">Indian</label>
+        </div>
+        <div>
+          <input type="checkbox" id="Italian" name="Italian"value="CuisineTags[Italian]">
+          <label for="horns">Italian</label>
+        </div>
+        <div>
+          <input type="checkbox" id="Thai" name="Thai"value="CuisineTags[Thai]">
+          <label for="horns">Thai</label>
+        </div>
+    </fieldset>
       <input
         type="text"
         class="form-control"
         id="Tags"
-        placeholder="Enter Tags"
-        name="Tags"
+        placeholder="Other"
+        name="CuisineTags[]"
         pattern="[a-z]"
-        required
-      /><span class="validity"></span>
+        
+      />
     </div>
     <div class="mb-3 mt-3">
       <label for="Hours" class="form-label">Hours of Operation:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="Hours"
-        placeholder="Enter Hours of operation"
-        name="Hours"
-        required
-      /><span class="validity"></span>
+      <table>
+    
+        <tbody>
+            <tr>
+                <td>Sunday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Monday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Tuesday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Wednesday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Thursday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Friday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time"required /><span class="validity"></span></td>
+            </tr>
+          <tr>
+                <td>Saturday</td>
+                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+            </tr>
+        </tbody>
+    </table><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="capacity" class="form-label">Images:</label>
