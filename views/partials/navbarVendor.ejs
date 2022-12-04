@@ -1,0 +1,30 @@
+<nav class="navbar  bg-secondary p-4 text-white bg-opacity-50 " ></nav>
+  <div id="webLogo" style="text-align: center;">
+    <a href="/">
+      <img src="/images/table.png" alt="photo" width="430">
+    </a>
+  </div>
+  <div>
+    <ul class="nav justify-content-center"  style="font-weight: bold;">
+        <% if (restaurant) { %>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle btn btn-outline-secondary" style="color:darkslategray" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= restaurant.Name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/restaurant/details/<%= restaurant._id %>">View</a>
+                <a class="dropdown-item" href="/restaurant/edit/<%= restaurant._id %>">Edit</a>
+            </div>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link front" style="color:darkslategray" href="/reservation/list/<%= restaurant._id %>">Reservations</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link front" style="color:darkslategray"href="/reservation/dashboard/<%= restaurant._id %>">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link front" style="color:darkslategray" href="/">Logout</a>
+        </li>
+        <% } %>
+      </ul>
+  </div>

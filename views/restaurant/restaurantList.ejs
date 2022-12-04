@@ -4,49 +4,23 @@
 <div class="container">
   <div class="container-fluid">
     <div class="row flex-nowrap">
-      <div
-        class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary bg-opacity-10"
-      >
-        <div
-          class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100"
-        >
-          <ul
-            class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-            id="menu"
-          >
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary bg-opacity-10">
+        <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item" style="font-weight: bold">
-              <a
-                href="/restaurant/trending"
-                class="nav-link align-middle px-0"
-                style="color: darkslategray"
-              >
+              <a href="/restaurant/trending" class="nav-link align-middle px-0" style="color: darkslategray">
                 ➚ <span class="ms-1 d-none d-sm-inline">Trending</span>
               </a>
             </li>
             <li style="font-weight: bold">
-              <a
-                href="/restaurant"
-                data-bs-toggle="collapse"
-                class="nav-link px-0 align-middle"
-                style="color: darkslategray"
-              >
+              <a href="/restaurant" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color: darkslategray">
                 <span class="ms-1 d-none d-sm-inline">Cuisines</span>
               </a>
-              <ul
-                class="nav flex-column ms-1"
-                id="submenu3"
-                data-bs-parent="#menu"
-              >
+              <ul class="nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                 <% cuisineList.forEach(function(cuisine) { %>
                 <li>
-                  <a
-                    href="/restaurant/<%= cuisine.Name %>"
-                    class="nav-link px-6"
-                    style="color: darkslategray"
-                  >
-                    <span class="d-none d-sm-inline"
-                      >- <%= cuisine.Name %></span
-                    >
+                  <a href="/restaurant/<%= cuisine.Name %>" class="nav-link px-6"style="color: darkslategray" >
+                    <span class="d-none d-sm-inline">- <%= cuisine.Name %></span>
                   </a>
                 </li>
                 <% }); %>
@@ -61,17 +35,10 @@
         <div class="card mb-3" style="max-width: 1200px">
           <div class="row g-6">
             <div class="col-md-5">
-              <img
-                src="<%= r.ImageLinks[0]%>"
-                class="img-fluid rounded-start restaurant-img"
-                alt="restaurant-img"
-              />
+              <img src="<%= r.ImageLinks[0]%>" class="img-fluid rounded-start restaurant-img" alt="restaurant-img" />
             </div>
             <div class="col-md-7">
-              <div
-                class="card-body"
-                style="font-family: Arial, Helvetica, sans-serif"
-              >
+              <div class="card-body" style="font-family: Arial, Helvetica, sans-serif">
                 <h5 class="card-title"><%= r.Name %></h5>
                 <p class="card-text" style="margin-bottom: 0.38em">
                   <%=r.Description %>
@@ -84,37 +51,19 @@
                   </tr>
                   <tr>
                     <td class="h6"><b>Website:</b></td>
-                    <td><%= r.Website %></td>
+                    <td><a href="https://<%= r.Website %>"><%= r.Website %></a></td>
                   </tr>
                   <tr>
                     <td class="h6"><b>Phone:</b></td>
-                    <td><%= r.Phone %></td>
+                    <td><%= '(' + r.Phone.substring(0,3) + ') ' + r.Phone.substring(3,6) + '-' + r.Phone.substring(6,10) %></td>
                   </tr>
                 </table>
-                <a
-                  href="/reservation/availability/<%=r._id%>"
-                  class="btn btn-secondary my-2"
-                  >Book Table</a
-                >
-                <a
-                  href="/restaurant/details/<%=r._id%>"
-                  class="btn btn-secondary my-2"
-                  >View Restaurant</a
-                >
-                <a
-                  href="/restaurant/edit/<%=r._id%>"
-                  class="btn btn-secondary my-2"
-                  >Edit</a
-                >
+                <a href="/reservation/availability/<%=r._id%>" class="btn btn-secondary my-2">Book Table</a>
+                <a href="/restaurant/details/<%=r._id%>" class="btn btn-secondary my-2">View Restaurant</a>
                 <div>
                   <% r.CuisineTags.forEach(function(tag) { %>
                   <a href="/restaurant/<%= tag %>">
-                    <button
-                      type="button"
-                      class="btn mt-3 mb-1 btn-outline-secondary btn-sm"
-                    >
-                      <%= tag %>
-                    </button>
+                    <button type="button" class="btn mt-3 mb-1 btn-outline-secondary btn-sm"> <%= tag %> </button>
                   </a>
                   <% }); %>
                 </div>
@@ -124,19 +73,8 @@
         </div>
         <% }); %> <% if (restaurantList.length == 0) { %>
         <div class="col py-3" style="border: rgb(212, 209, 209) solid 2px">
-          <div class="card mb-3" style="max-width: 1200px">
-            <div class="row px-5">
-              <div class="col-md-3">
-                <i
-                  class="fa-solid fa-xmark img-fluid rounded-start error-icon"
-                ></i>
-              </div>
-              <div class="col-md-9">
-                <div class="card-body">
-                  <h3>No Restaurants With Filter Applied Found!</h3>
-                </div>
-              </div>
-            </div>
+          <div class="card my-3 text-center" style="max-width: 1200px">
+              <h3>No Restaurants With Filter Applied Found!</h3>
           </div>
         </div>
       </div>

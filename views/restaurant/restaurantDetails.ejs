@@ -14,66 +14,76 @@
                    <% var index = 2 %> 
                         <%  for(let idx =0;idx < restaurant.ImageLinks.length; idx++ ){  %>         
                     <div class="small-images-container">
-                        <img src="<%= restaurant.ImageLinks[idx]%>" class=  "small-image"  />                   
+                        <img src="<%= restaurant.ImageLinks[idx]%>" class= "small-image"/>                   
                     </div> 
                     <%  } %> 
                  
                      </div>
                     </div>      
-                    <div class="product-detail-desc">
-                      
+                    <div class="product-detail-desc my-5 mx-4">
                         <h1><%=restaurant.Name%></h1>
                         <p><%=restaurant.Description %></p>
                         
-                        <div style="float:right; margin-top:200px;">
-                       <a href="/reservation/availability/<%=restaurant._id%>" class="btn btn-secondary my-2" style="margin-top:2em; ">Grab A Table</a>
-                       </div>
-                       <div style="float:right; margin-top:200px; padding-right: 10px;">
-                        <a href="<%=restaurant.Menu%>" target="_blank" class="btn btn-secondary my-2" style="margin-top:2em; ">Menu</a>
+                        <div class="restaurant-detail-button-container">
+                            <a href="<%=restaurant.Menu%>" target="_blank">
+                                <div style="width:100%;" class="btn btn-lg btn-outline-secondary my-2">
+                                Menu
+                                </div>
+                            </a>
+                            <a href="/reservation/availability/<%=restaurant._id%>">
+                                <div style="width:100%;" class="btn btn-lg btn-secondary my-2">
+                                    Grab A Table
+                                </div>
+                            </a>
                         </div>
+                        
                       </div>            
             </div>
              <div class="sideBox">
-
-                <div class="hoursBox">
-                    <div style="text-align: center;">
+                <div class="hoursBox my-2 p-2">
+                    <div class="my-2 text-center">
                         <b><i>HOURS OF OPERATION</i></b>
                     </div>
-                    <div>
-                        Sunday &nbsp;<span> -</span>
-                    </div>
-                    
-                    <div>
-                        Monday<span>-</span>
-                    </div>
-                    <div>
-                        Tuesday<span>-</span>
-                    </div>
-                    <div>
-                        Wednesday<span>-</span>
-                    </div>
-                    <div>
-                        Thursday<span>-</span>
-                    </div>
-                    <div>
-                        Friday<span>-</span>
-                    </div>
-                    <div>
-                        Saturday<span>-</span>
-                    </div>  
+                    <table class="table table-sm small">
+                        <% Object.keys(restaurant.HoursOfOperations).forEach(function(day) { %>
+                        <tr>
+                            <td><%= day %></td>
+                            <% if (restaurant.HoursOfOperations[day].StartTime) { %>
+                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone: "UTC"}) %></td>
+                                <td>to</td>
+                            <% } %>
+                            <% if (restaurant.HoursOfOperations[day].EndTime) { %>
+                                <td><%= restaurant.HoursOfOperations[day].EndTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone:"UTC"}) %></td>
+                            <% } %>
+                        </tr>
+                        <% }) %> 
+                    </table>
                 </div>
-                <div class="contactBox">
+                <div class="contactBox my-2 p-2">
                     <div style="text-align: center;">
                         <b><i>CONTACT US</i></b>
                     </div>
-                    <div>☎&nbsp;<span><%=restaurant.Phone%></span></div>
-                    <div>✉&nbsp;<span><%=restaurant.Email%></span> </div>
+                    <table class="table">
+                        <tr>
+                            <td><i class="bi bi-telephone-fill"></i></td>
+                            <td><%= '(' + restaurant.Phone.substring(0,3) + ') ' + restaurant.Phone.substring(3,6) + '-' + restaurant.Phone.substring(6,10) %></td>
+                        </tr>
+                        <tr>
+                            <td><i class="bi bi-globe"></i></td>
+                            <td><a href="https://<%= restaurant.Website %>"><%=restaurant.Website%></a></td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="locationBox">
+                <div class="locationBox my-2 p-2">
                     <div style="text-align: center;">
                         <b><i>LOCATION</i></b>
                     </div>
-                    <div>𖡡&nbsp;<span><%=restaurant.Address%></span></div>
+                    <table class="table">
+                        <tr>
+                            <td><i class="bi bi-geo-alt-fill"></i></td>
+                            <td><%=restaurant.Address%></td>
+                        </tr>
+                    </table>
                 </div>
 
                 
@@ -86,12 +96,11 @@
 </div>
 <script>                       
     let smallImages = document.getElementsByClassName("small-image");
-     let mainImage = document.getElementById("mainImg");
-    for(let i =0;i < smallImages.length; i++)
-    {
-       smallImages[i].onclick = function(){
+    let mainImage = document.getElementById("mainImg");
+    for(let i =0;i < smallImages.length; i++) {
+        smallImages[i].onclick = function(){
            mainImage.src = this.src;
-       }
+        }
     } 
-  </script>    
+</script>    
 

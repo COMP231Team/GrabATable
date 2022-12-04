@@ -1,9 +1,9 @@
 <%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
 
-<div class="container">
-  <br />
-  <h1>Restaurant Details</h1>
-  <form method="POST">
+<div class="mt-4 mb-5 container grey-border">
+  <h1 class="my-3 text-center">Restaurant Details</h1>
+  <form method="POST" class=" my-2 mx-4">
     <div class="mb-3 mt-3">
       <label for="name" class="form-label">Name of Restaurant:</label>
       <input
@@ -25,22 +25,18 @@
         name="Description"
         value="<%=restaurant.Description%>"
         required
-      >
-<%=restaurant.Description%></textarea
-      >
+><%=restaurant.Description%></textarea>
     </div>
 
     <div class="mb-3 mt-3">
-      <label for="email" class="form-label">Email:</label>
+      <label for="website" class="form-label">Website:</label>
       <input
-        type="email"
+        type="text"
         class="form-control"
-        id="Email"
-        placeholder="Enter email"
-        name="Email"
-        value="<%=restaurant.Email%>"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
-        required
+        id="website"
+        placeholder="Enter Website"
+        name="Website"
+        value="<%=restaurant.Website%>"
       /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
@@ -127,8 +123,8 @@
       /><span class="validity"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="" class="btn btn-danger">Submit</button>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+    <button type="reset" class="btn btn-outline-secondary">Clear</button>
   </form>
 </div>
 

@@ -7,10 +7,19 @@ let controllerReservation = require('../controllers/reservations');
 // Routes
 
 // Vendor
+// Buffer Page
+router.get('/buffer', controllerReservation.buffer);
+
 // Get reservation list
 router.get('/list', controllerReservation.reservationList);
+router.get('/list/:id', controllerReservation.reservationList);
+
 //post reservation list
-router.post('/list', controllerReservation.postreservationList);
+router.post('/list/name', controllerReservation.postReservationListName);
+router.post('/list/id', controllerReservation.postReservationListId);
+
+// Get reservation dashboard
+router.get('/dashboard/:restaurantId', controllerReservation.reservationDashboard)
 
 // Customer
 // Get available timing
