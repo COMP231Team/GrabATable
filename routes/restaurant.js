@@ -12,6 +12,7 @@ router.get('/:cuisine', controllerRestaurant.filterRestaurantList);
 
 // Get  restaurant edit page
 router.get('/edit/:id', controllerRestaurant.editRestaurant);
+
 // Get  restaurant details page
 router.get('/details/:id', controllerRestaurant.detailsOfRestaurant);
 

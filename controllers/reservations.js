@@ -2,25 +2,60 @@
 let restaurant = require('../models/restaurant');
 let nodemailer = require('nodemailer');
 
-exports.reservationList = function(req, res) {
-  res.render('reservation/reservationList', { 
+exports.buffer =  function(req, res) {
+  res.render('reservation/buffer', { 
     title: 'Reservations',
     restaurant: ""
     });
-  };
-   
-  exports.postreservationList = function(req, res, next) {
-    const restaurantName = req.body.Name;
-    restaurant.findOne({Name:restaurantName},(err, restaurantDetails) => {
+}
+
+exports.reservationList = function(req, res) {
+  if (req.params.id) {
+    const id = req.params.id;
+    restaurant.findOne({_id: id},(err, restaurantDetails) => {
       if (err) {
           console.log(err);
       } else {
     res.render('reservation/reservationList', { 
       title: 'Reservations',
-      restaurant:restaurantDetails
+      restaurant: restaurantDetails
       });
      }
      }); 
+  } else {
+    res.render('reservation/reservationList', { 
+      title: 'Reservations',
+      restaurant: ""
+      });
+  }
+};
+   
+exports.postReservationListName = function(req, res, next) {
+    const restaurantName = req.body.Name;
+    restaurant.findOne({Name: restaurantName},(err, restaurantDetails) => {
+      if (err) {
+          console.log(err);
+      } else {
+    res.render('reservation/reservationList', { 
+      title: 'Reservations',
+      restaurant: restaurantDetails
+      });
+     }
+    }); 
+}
+
+exports.postReservationListId = function(req, res, next) {
+  const restaurantId = req.body.id;
+  restaurant.findOne({id: restaurantId},(err, restaurantDetails) => {
+    if (err) {
+        console.log(err);
+    } else {
+  res.render('reservation/reservationList', { 
+    title: 'Reservations',
+    restaurant: restaurantDetails
+    });
+   }
+  }); 
 }
 
 exports.availabilities = function(req, res) {
@@ -261,3 +296,39 @@ exports.postEditBooking = function (req, res, next) {
       }
     });
 }
+
+
+// VENDOR
+
+// Vendor Dashboard
+exports.reservationDashboard = function(req, res) {
+  let id = req.params.restaurantId;
+
+  restaurant.findById(id, async (err, restaurantDetails) => {
+      if (err) {
+        console.log(err);
+        res.end(err);
+      } else {
+        // Convert Data into Frequency Data
+        let reservationData = {};
+        restaurantDetails.Reservations.forEach(reservation => {
+          if (reservation.Date in reservationData) {
+            reservationData[reservation.Date] ++;
+          } else {
+            reservationData[reservation.Date] = 1;
+          }
+        });
+
+        res.render('reservation/reservationDashboard', { 
+          title: 'Reservation Dashboard', 
+          restaurant: restaurantDetails,
+          restaurantData: JSON.stringify(restaurantDetails),
+          chartData: JSON.stringify(reservationData)
+        });
+    }
+  });
+
+
+  
+
+};
