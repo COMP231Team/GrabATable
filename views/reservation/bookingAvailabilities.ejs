@@ -22,11 +22,11 @@
                 <form  method="POST">
                     <div class="mb-3 mt-3">
                     <label for="Date" class="form-label" style="float:left">Booking Date:</label>
-                    <input type="date" class="form-control" id="Date" name="Date">
+                    <input type="date" class="form-control" id="Date" name="Date" title="Please Choose a Date" required ><span class="validity"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="Guests" class="form-label" style="float:left">Number of Guests:</label>
-                    <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="6" min="1">
+                    <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="6" min="1" title="Please Choose number of guests" required><span class="validity"></span>
                   </div>
                   <div style="text-align: center; margin:2em;">
                     <button type="submit" class="btn btn-secondary">Show Available Times</button>

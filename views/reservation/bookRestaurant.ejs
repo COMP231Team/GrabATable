@@ -3,34 +3,35 @@
 
     <div class="container" style="width:60%">
       <br>
-      
+      <body>
       <form  method="POST">
         <div class="mb-3 mt-3">
           <div style="text-align: center; font-family: cursive;">
           <h3 ><%= restaurant.Name %></h3>
           </div>
           <label for="name" class="form-label">Name:</label>
-          <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name">
+          <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name" minlength="3" maxlength="15" title="Enter Name" required ><span class="validity"></span>
         </div>
         <div class="mb-3 mt-3">
-            <label for="phone" class="form-label">Phone:</label> 
-            <input type="text" class="form-control" id="Phone" placeholder="Enter Phone" name="Phone">
+            <label for="Phone" class="form-label">Phone:</label> 
+            <input type="text" class="form-control" id="Phone" placeholder="Enter 10 digit Phone" name="Phone" pattern="[0-9]{10}" title="Enter 10 Digit Phone number" required><span class="validity"></span>
+            
           </div>
           <div class="mb-3 mt-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email">
+            <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email" title="Enter valid email address" required ><span class="validity"></span>
           </div>
           <div class="mb-3 mt-3">
-            <label for="phone" class="form-label">Booking Date:</label>
+            <label for="date" class="form-label">Booking Date:</label>
             <input type="text" class="form-control" name="Date" value="<%= date %>" readonly="readonly">
           </div>
           <div class="mb-3 mt-3">
-            <label for="phone" class="form-label">Booking Time:</label>
-            <input type="text" class="form-control" name="Time" value="<%= time %>:00" readonly="readonly">
+            <label for="time" class="form-label">Booking Time:</label>
+            <input type="text" class="form-control" name="Time" value="<%= time %>" readonly="readonly">
           </div>
           <div class="mb-3 mt-3">
-            <label for="phone" class="form-label">Number of Guests:</label>
-            <input type="number" class="form-control" id="Guests" value="<%=guests%>" name="Guests" max="6" min="1">
+            <label for="guest" class="form-label">Number of Guests:</label>
+            <input type="number" class="form-control" id="Guests" value="<%=guests%>" name="Guests" max="6" min="1"><span class="validity"></span>
           </div>
           <div class="mb-3 mt-3">
             <label for="notes">Additional Notes:</label>
@@ -41,6 +42,7 @@
           </div>
         
       </form>
+      </body>
       <br>
       <br>
       <br>

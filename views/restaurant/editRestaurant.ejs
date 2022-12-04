@@ -13,7 +13,8 @@
         name="Name"
         placeholder="Enter Restaurant Name"
         value="<%=restaurant.Name%>"
-      />
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="comment">Description:</label>
@@ -23,6 +24,7 @@
         id="Description"
         name="Description"
         value="<%=restaurant.Description%>"
+        required
       >
 <%=restaurant.Description%></textarea
       >
@@ -37,7 +39,9 @@
         placeholder="Enter email"
         name="Email"
         value="<%=restaurant.Email%>"
-      />
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="address" class="form-label">Address:</label>
@@ -48,7 +52,8 @@
         placeholder="Enter Address"
         name="Address"
         value="<%=restaurant.Address%>"
-      />
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="phone" class="form-label">Phone:</label>
@@ -59,7 +64,8 @@
         placeholder="Enter Phone number"
         name="Phone"
         value="<%=restaurant.Phone%>"
-      />
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="capacity" class="form-label">Capacity:</label>
@@ -70,7 +76,31 @@
         placeholder="Enter capacity"
         name="Capacity"
         value="<%=restaurant.Capacity%>"
-      />
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="tags" class="form-label">Tags:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Tags"
+        placeholder="Enter Tags"
+        name="Tags"
+        pattern="[a-z]"
+        required
+      /><span class="validity"></span>
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="Hours" class="form-label">Hours of Operation:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="Hours"
+        placeholder="Enter Hours of operation"
+        name="Hours"
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="capacity" class="form-label">Images:</label>
@@ -81,7 +111,8 @@
         placeholder="Enter links seperated by comma"
         value="<%=restaurant.ImageLinks%>"
         name="ImageLinks"
-      />
+        required
+      /><span class="validity"></span>
     </div>
     <div class="mb-3 mt-3">
       <label for="capacity" class="form-label">Menu:</label>
@@ -92,7 +123,8 @@
         placeholder="Enter link for menu"
         value="<%=restaurant.Menu%>"
         name="Menu"
-      />
+        required
+      /><span class="validity"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
