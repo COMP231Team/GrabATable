@@ -13,6 +13,7 @@
                  <th scope="col">Selected Time</th>
                  <th scope="col">Phone</th>
                  <th scope="col">Email</th>
+                 <th scope="col">Status</th>
                  <th></th>                 
               </tr>        
           </thead>  
@@ -27,7 +28,8 @@
                 <td><%= restaurant.Reservations[idx].Date%></td>
                 <td><%= restaurant.Reservations[idx].Phone%></td>
                 <td><%= restaurant.Reservations[idx].Email%></td>
-                <td class="text-center"><a href="" class="btn btn-danger btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Modify</a></td> 
+                <td><%= restaurant.Reservations[idx].Status%></td>
+                <td class="text-center"><a href="/reservation/editBooking/<%= restaurant.Reservations[idx]._id%>" class="btn btn-danger btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Modify</a></td> 
               </tr>     
               <%  } %> 
     </tbody>
