@@ -26,31 +26,24 @@ body {
 }
 
 .error-icon {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-
+    width: 200px;
+    height: 200px;
+    /* object-fit: cover; */
 }
 
 .product-detail-container{
   display: flex;
   gap: 40px;
-  margin: 40px;
-  margin-top: 60px;
   color: #324d67;
 
 }
 .product-detail-image{
   border-radius: 15px;
-    background-color: #ebebeb;
+  background-color: #ebebeb;
   width: 400px;
   height: 400px;
   cursor: pointer;
-  transition: .3s ease-in-out;
-}
-.product-detail-image:hover{
-  background-color: #F7D7E1;
-
+  transition: .5s ease-in-out;
 }
 
 .restaurant-detail-button-container {
@@ -83,20 +76,14 @@ body {
 .hoursBox{
   width: 22%;
   border:2px solid lightgray;
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-  padding:0.8em;
 }
 .contactBox{
   width: 22%;
   border:2px solid lightgray;
-  padding:0.8em;
-  margin-bottom: 1em;
 }
 .locationBox{
   width: 22%;
   border:2px solid lightgray;
-  padding:0.8em;
 }
 
 a {

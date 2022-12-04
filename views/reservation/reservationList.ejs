@@ -14,6 +14,7 @@
                  <th scope="col">Phone</th>
                  <th scope="col">Email</th>
                  <th scope="col">Status</th>
+                 <th scope="col">Notes</th>
                  <th></th>                 
               </tr>        
           </thead>  
@@ -25,10 +26,11 @@
                
                 <td scope="row"><%= restaurant.Reservations[idx].Guest%></td>
                 <td><%= restaurant.Reservations[idx].NumberOfGuests%></td>
-                <td><%= restaurant.Reservations[idx].Date%></td>
-                <td><%= restaurant.Reservations[idx].Phone%></td>
+                <td><%= restaurant.Reservations[idx].Date.toLocaleString("en-US", {weekday: "short", month:"long", day: "numeric", year:"2-digit", hour:"numeric", minute:"2-digit", hour12: true})%></td>
+                <td><%= '(' + restaurant.Reservations[idx].Phone.substring(0,3) + ') ' + restaurant.Reservations[idx].Phone.substring(3,6) + '-' + restaurant.Reservations[idx].Phone.substring(6,10) %></td>
                 <td><%= restaurant.Reservations[idx].Email%></td>
                 <td><%= restaurant.Reservations[idx].Status%></td>
+                <td><%= restaurant.Reservations[idx].Notes%></td>
                 <td class="text-center"><a href="/reservation/editBooking/<%= restaurant.Reservations[idx]._id%>" class="btn btn-danger btn-sm edit"><i class="fa-solid fa-pen-to-square"></i> Modify</a></td> 
               </tr>     
               <%  } %> 

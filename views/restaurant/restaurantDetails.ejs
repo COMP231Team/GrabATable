@@ -14,7 +14,7 @@
                    <% var index = 2 %> 
                         <%  for(let idx =0;idx < restaurant.ImageLinks.length; idx++ ){  %>         
                     <div class="small-images-container">
-                        <img src="<%= restaurant.ImageLinks[idx]%>" class=  "small-image"  />                   
+                        <img src="<%= restaurant.ImageLinks[idx]%>" class= "small-image"/>                   
                     </div> 
                     <%  } %> 
                  
@@ -40,7 +40,7 @@
                       </div>            
             </div>
              <div class="sideBox">
-                <div class="hoursBox">
+                <div class="hoursBox my-2 p-2">
                     <div class="my-2 text-center">
                         <b><i>HOURS OF OPERATION</i></b>
                     </div>
@@ -49,17 +49,17 @@
                         <tr>
                             <td><%= day %></td>
                             <% if (restaurant.HoursOfOperations[day].StartTime) { %>
-                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true}) %></td>
+                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone: "UTC"}) %></td>
                                 <td>to</td>
                             <% } %>
                             <% if (restaurant.HoursOfOperations[day].EndTime) { %>
-                                <td><%= restaurant.HoursOfOperations[day].EndTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true}) %></td>
+                                <td><%= restaurant.HoursOfOperations[day].EndTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone:"UTC"}) %></td>
                             <% } %>
                         </tr>
                         <% }) %> 
                     </table>
                 </div>
-                <div class="contactBox">
+                <div class="contactBox my-2 p-2">
                     <div style="text-align: center;">
                         <b><i>CONTACT US</i></b>
                     </div>
@@ -74,7 +74,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="locationBox">
+                <div class="locationBox my-2 p-2">
                     <div style="text-align: center;">
                         <b><i>LOCATION</i></b>
                     </div>
