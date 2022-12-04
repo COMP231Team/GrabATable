@@ -1,9 +1,9 @@
 <%- include('../partials/header'); %>
+<%- include('../partials/navbarCustomer'); %>
 
-<div class="container">
-  <br />
-  <h1>Restaurant Details</h1>
-  <form method="POST">
+<div class="mt-4 mb-5 container grey-border">
+  <h1 class="my-3 text-center">Restaurant Details</h1>
+  <form method="POST" class=" my-2 mx-4">
     <div class="mb-3 mt-3">
       <label for="name" class="form-label">Name of Restaurant:</label>
       <input
@@ -23,20 +23,18 @@
         id="Description"
         name="Description"
         value="<%=restaurant.Description%>"
-      >
-<%=restaurant.Description%></textarea
-      >
+><%=restaurant.Description%></textarea>
     </div>
 
     <div class="mb-3 mt-3">
-      <label for="email" class="form-label">Email:</label>
+      <label for="website" class="form-label">Website:</label>
       <input
-        type="email"
+        type="text"
         class="form-control"
-        id="Email"
-        placeholder="Enter email"
-        name="Email"
-        value="<%=restaurant.Email%>"
+        id="website"
+        placeholder="Enter Website"
+        name="Website"
+        value="<%=restaurant.Website%>"
       />
     </div>
     <div class="mb-3 mt-3">
@@ -96,7 +94,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="" class="btn btn-danger">Submit</button>
+    <button type="reset" class="btn btn-danger">Clear</button>
   </form>
 </div>
 

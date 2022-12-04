@@ -141,7 +141,7 @@ module.exports.editRestaurant = function (req, res) {
     var uImageUrls = [];
     let uName = req.body.Name;
     let uDescription = req.body.Description;
-    let uEmail = req.body.Email;
+    let uWebsite = req.body.Website;
     let uAddress = req.body.Address;
     let uPhone = req.body.Phone;
     let uCapacity = req.body.Capacity;
@@ -155,7 +155,7 @@ module.exports.editRestaurant = function (req, res) {
         $set: {
           Name: uName,
           Description: uDescription,
-          Email: uEmail,
+          Website: uWebsite,
           Address: uAddress,
           Phone: uPhone,
           Capacity: uCapacity,
