@@ -32,7 +32,9 @@ exports.reservationList = function(req, res) {
    
 exports.postReservationListName = function(req, res, next) {
     const restaurantName = req.body.Name;
-    restaurant.findOne({Name: restaurantName},(err, restaurantDetails) => {
+    const convertName = restaurantName.replace(/\w+/g,
+    function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();});
+    restaurant.findOne({Name: convertName},(err, restaurantDetails) => {
       if (err) {
           console.log(err);
       } else {
