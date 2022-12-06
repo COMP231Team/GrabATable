@@ -147,8 +147,7 @@ exports.getBooking = function(req, res, next) {
 };
   
 exports.postBooking = function(req, res, next) {
-    const dateTime = `${req.body.Date} ${req.body.Time}`
-
+    const dateTime = `${req.body.Date} ${req.body.Time}`+':00'
     let id = req.params.id;
     let reservation = ({
         Guest: req.body.Name,
