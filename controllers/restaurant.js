@@ -140,9 +140,7 @@ module.exports.editRestaurant = function (req, res) {
       }
     });
   } else {
-
-   
-   
+    var uCuisineTags = req.body.CuisineTags;
     var uImageUrls = [];
     var dt = new Date();
     SunStartTimeArray = req.body.SunStartTime.split(":");
@@ -159,6 +157,7 @@ module.exports.editRestaurant = function (req, res) {
     FriEndTimeArray = req.body.FriEndTime.split(":");
     SatStartTimeArray = req.body.SatStartTime.split(":");
     SatEndTimeArray = req.body.SatEndTime.split(":");
+
     var uHoursofOperations={Sunday:
       {StartTime:dt.setUTCHours(SunStartTimeArray[0],SunStartTimeArray[1]),
         EndTime:dt.setUTCHours(SunEndTimeArray[0],SunEndTimeArray[1])},
@@ -203,6 +202,7 @@ module.exports.editRestaurant = function (req, res) {
           Capacity: uCapacity,
           ImageLinks: uImageUrls,
           Menu: uMenuUrl,
+          CuisineTags:uCuisineTags,
           HoursOfOperations:uHoursofOperations
         },
       },

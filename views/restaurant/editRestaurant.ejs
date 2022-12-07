@@ -80,43 +80,80 @@
       <label for="CuisineTags" class="form-label">Cuisine:</label>
       <fieldset>
         <div>
-          <input type="checkbox" id="Bar" name="CuisineTags[]" value="Bar">
-          <label for="scales">Bar</label>
+          <% if(restaurant.CuisineTags.includes("Bar")){%>
+            <input type="checkbox" id="Bar" name="CuisineTags" value="Bar" checked>
+          <label for="Bar">Bar</label>
+          <%}else{%>
+            <input type="checkbox" id="Bar" name="CuisineTags" value="Bar" >
+            <label for="Bar">Bar</label>
+            <%}%>
+          
         </div>
         <div>
-          <input type="checkbox" id="FastFood" name="CuisineTags[]" value="Fast Food">
-          <label for="horns">Fast Food</label>
+          <% if(restaurant.CuisineTags.includes("Fast Food")){%>
+          <input type="checkbox" id="FastFood" name="CuisineTags" value="Fast Food" checked>
+          <label for="Fast Food">Fast Food</label>
+          <%}else{%>
+            <input type="checkbox" id="FastFood" name="CuisineTags" value="Fast Food">
+            <label for="Fast Food">Fast Food</label>
+            <%}%>
         </div>
         <div>
-          <input type="checkbox" id="French" name="CuisineTags[]"value="French">
-          <label for="horns">French</label>
+          <% if(restaurant.CuisineTags.includes("French")){%>
+          <input type="checkbox" id="French" name="CuisineTags"value="French" checked>
+          <label for="French">French</label>
+          <%}else{%>
+            <input type="checkbox" id="French" name="CuisineTags"value="French">
+          <label for="French">French</label>
+            <%}%>
         </div>
         <div>
-          <input type="checkbox" id="Hakka" name="CuisineTags[]"value="Hakka">
-          <label for="horns">Hakka</label>
+          <% if(restaurant.CuisineTags.includes("Hakka")){%>
+          <input type="checkbox" id="Hakka" name="CuisineTags"value="Hakka" checked>
+          <label for="Hakka">Hakka</label>
+          <%}else{%>
+            <input type="checkbox" id="Hakka" name="CuisineTags"value="Hakka">
+          <label for="Hakka">Hakka</label>
+            <%}%>
         </div>
         <div>
-          <input type="checkbox" id="Indian" name="CuisineTags[]"value="Indian">
-          <label for="horns">Indian</label>
+          <% if(restaurant.CuisineTags.includes("Indian")){%>
+          <input type="checkbox" id="Indian" name="CuisineTags"value="Indian" checked>
+          <label for="Indian">Indian</label>
+          <%}else{%>
+            <input type="checkbox" id="Indian" name="CuisineTags"value="Indian">
+          <label for="Indian">Indian</label>
+            <%}%>
         </div>
         <div>
-          <input type="checkbox" id="Italian" name="Italian"value="CuisineTags[Italian]">
-          <label for="horns">Italian</label>
+          <% if(restaurant.CuisineTags.includes("Italian")){%>
+          <input type="checkbox" id="Italian" name="CuisineTags"value="Italian" checked>
+          <label for="Italian">Italian</label>
+          <%}else{%>
+            <input type="checkbox" id="Italian" name="CuisineTags"value="Italian">
+          <label for="Italian">Italian</label>
+            <%}%>
         </div>
         <div>
-          <input type="checkbox" id="Thai" name="Thai"value="CuisineTags[Thai]">
-          <label for="horns">Thai</label>
+          <% if(restaurant.CuisineTags.includes("Thai")){%>
+          <input type="checkbox" id="Thai" name="CuisineTags"value="Thai" checked>
+          <label for="Thai">Thai</label>
+          <%}else{%>
+            <input type="checkbox" id="Thai" name="CuisineTags"value="Thai">
+            <label for="Thai">Thai</label>
+            <%}%>
+        </div>
+        <div>
+          <% if(restaurant.CuisineTags.includes("Asian")){%>
+          <input type="checkbox" id="Asian" name="CuisineTags"value="Asian" checked>
+          <label for="Asian">Asian</label>
+          <%}else{%>
+            <input type="checkbox" id="Asian" name="CuisineTags"value="Asian">
+            <label for="Asian">Asian</label>
+            <%}%>
         </div>
     </fieldset>
-      <input
-        type="text"
-        class="form-control"
-        id="Tags"
-        placeholder="Other"
-        name="CuisineTags[]"
-        pattern="[a-z]"
-        
-      />
+     
     </div>
     <div class="mb-3 mt-3">
       <label for="Hours" class="form-label">Hours of Operation:</label>
