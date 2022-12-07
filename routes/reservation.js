@@ -36,6 +36,8 @@ router.get('/editBooking/:id', controllerReservation.getEditBooking);
 // Post reservation edit booking form
 router.post("/editBooking/:id", controllerReservation.postEditBooking)
 
+// Delete reservation: email
+router.get("/delete/:reservationId&:restaurantId", controllerReservation.deleteBooking)
 
 module.exports = router;
 

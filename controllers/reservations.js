@@ -1,6 +1,8 @@
 // define the restaurant model
 let restaurant = require('../models/restaurant');
 let nodemailer = require('nodemailer');
+let mongoose = require('mongoose');
+const ObjectId = require('mongodb').ObjectId
 
 exports.buffer =  function(req, res) {
   res.render('reservation/buffer', { 
@@ -149,7 +151,9 @@ exports.getBooking = function(req, res, next) {
 exports.postBooking = function(req, res, next) {
     const dateTime = `${req.body.Date} ${req.body.Time}`+':00'
     let id = req.params.id;
+    const reservationId = new mongoose.Types.ObjectId()
     let reservation = ({
+        _id: reservationId,
         Guest: req.body.Name,
         Phone: req.body.Phone,
         Email: req.body.Email,
@@ -185,7 +189,7 @@ exports.postBooking = function(req, res, next) {
                 from: "team.Comp.231@gmail.com",
                 subject: "Booking confirmed!",
                 text: "Your Reservation Details",
-                html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+dateString.toString()+" has been confirmed! Press this <a href='/restaurant'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"
+                html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+dateString.toString()+" has been confirmed! Press this <a href='http://localhost:3000/reservation/delete/"+reservationId+"&"+id+"'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"                
               };
 
               transporter.sendMail(message, (err, info) => {
@@ -298,6 +302,38 @@ exports.postEditBooking = function (req, res, next) {
     });
 }
 
+exports.deleteBooking = function (req, res, next) {
+  let reservationId = req.params.reservationId;
+  let restaurantId = req.params.restaurantId;
+
+  console.log(reservationId);
+  console.log(restaurantId);
+
+  console.log('test')
+  
+  const reslt = restaurant.updateOne({
+    '_id': ObjectId(restaurantId)
+  }, {
+    $pull: { Reservations: { _id: ObjectId(reservationId) } }
+  }, function (error, result) { 
+    if(error){
+      console.log(err)
+    }
+    else{ 
+      console.log(result);
+    }
+  });
+
+  try {
+    reslt.exec;
+  }
+  catch (err) {
+    console.log(err)
+  }
+
+  res.render('reservation/bookingCancelConfirmation', {title: ''})
+
+}
 
 // VENDOR
 
