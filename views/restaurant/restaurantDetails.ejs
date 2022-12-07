@@ -49,7 +49,7 @@
                         <tr>
                             <td><%= day %></td>
                             <% if (restaurant.HoursOfOperations[day].StartTime) { %>
-                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone: "UTC"}) %></td>
+                                <td><%= restaurant.HoursOfOperations[day].StartTime.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", hour12:true, timeZone:"UTC"}) %></td>
                                 <td>to</td>
                             <% } %>
                             <% if (restaurant.HoursOfOperations[day].EndTime) { %>

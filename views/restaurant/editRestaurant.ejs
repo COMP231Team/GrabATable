@@ -125,38 +125,39 @@
         <tbody>
             <tr>
                 <td>Sunday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+
+                <td><input id="appt-time" type="time" name="SunStartTime" value="<%=restaurant.HoursOfOperations.Sunday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="SunEndTime" value="<%=restaurant.HoursOfOperations.Sunday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Monday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="MonStartTime" value="<%=restaurant.HoursOfOperations.Monday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="MonEndTime" value="<%=restaurant.HoursOfOperations.Monday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Tuesday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="TueStartTime" value="<%=restaurant.HoursOfOperations.Tuesday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="TueEndTime" value="<%=restaurant.HoursOfOperations.Tuesday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Wednesday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="WedStartTime" value="<%=restaurant.HoursOfOperations.Wednesday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="WedEndTime" value="<%=restaurant.HoursOfOperations.Wednesday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>" /><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Thursday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="ThuStartTime" value="<%=restaurant.HoursOfOperations.Thrusday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="ThuEndTime" value="<%=restaurant.HoursOfOperations.Thrusday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Friday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time"required /><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="FriStartTime"  value="<%=restaurant.HoursOfOperations.Friday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="FriEndTime"  value="<%=restaurant.HoursOfOperations.Friday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
             </tr>
           <tr>
                 <td>Saturday</td>
-                <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
-              <td><input id="appt-time" type="time" name="appt-time" required/><span class="validity"></span></td>
+                <td><input id="appt-time" type="time" name="SatStartTime" value="<%=restaurant.HoursOfOperations.Saturday.StartTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
+              <td><input id="appt-time" type="time" name="SatEndTime" value="<%=restaurant.HoursOfOperations.Saturday.EndTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12:false, timeZone:'UTC'})%>"/><span class="validity"></span></td>
             </tr>
         </tbody>
     </table><span class="validity"></span>

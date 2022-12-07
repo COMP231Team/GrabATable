@@ -140,7 +140,47 @@ module.exports.editRestaurant = function (req, res) {
       }
     });
   } else {
+
+   
+   
     var uImageUrls = [];
+    var dt = new Date();
+    SunStartTimeArray = req.body.SunStartTime.split(":");
+    SunEndTimeArray = req.body.SunEndTime.split(":");
+    MonStartTimeArray= req.body.MonStartTime.split(":");
+    MonEndTimeArray = req.body.MonEndTime.split(":");
+    TueStartTimeArray = req.body.TueStartTime.split(":");
+    TueEndTimeArray = req.body.TueEndTime.split(":");
+    WedStartTimeArray = req.body.WedStartTime.split(":");
+    WedEndTimeArray = req.body.WedEndTime.split(":");
+    ThuStartTimeArray = req.body.ThuStartTime.split(":");
+    ThuEndTimeArray = req.body.ThuEndTime.split(":");
+    FriStartTimeArray = req.body.FriStartTime.split(":");
+    FriEndTimeArray = req.body.FriEndTime.split(":");
+    SatStartTimeArray = req.body.SatStartTime.split(":");
+    SatEndTimeArray = req.body.SatEndTime.split(":");
+    var uHoursofOperations={Sunday:
+      {StartTime:dt.setUTCHours(SunStartTimeArray[0],SunStartTimeArray[1]),
+        EndTime:dt.setUTCHours(SunEndTimeArray[0],SunEndTimeArray[1])},
+        Monday:
+      {StartTime:dt.setUTCHours(MonStartTimeArray[0],MonStartTimeArray[1]),
+        EndTime:dt.setUTCHours(MonEndTimeArray[0],MonEndTimeArray[1])},
+        Tuesday: 
+      {StartTime:dt.setUTCHours(TueStartTimeArray[0],TueStartTimeArray[1]),
+      EndTime:dt.setUTCHours(TueEndTimeArray[0],TueEndTimeArray[1])},
+        Wednesday:
+      {StartTime:dt.setUTCHours(WedStartTimeArray[0],WedStartTimeArray[1]),
+      EndTime:dt.setUTCHours(WedEndTimeArray[0],WedEndTimeArray[1])},
+        Thrusday:
+      {StartTime:dt.setUTCHours(ThuStartTimeArray[0],ThuStartTimeArray[1]),
+      EndTime:dt.setUTCHours(ThuEndTimeArray[0],ThuEndTimeArray[1])},
+        Friday:
+      {StartTime:dt.setUTCHours(FriStartTimeArray[0],FriStartTimeArray[1]),
+      EndTime:dt.setUTCHours(FriEndTimeArray[0],FriEndTimeArray[1])},
+        Saturday:
+      {StartTime:dt.setUTCHours(SatStartTimeArray[0],SatStartTimeArray[1]),
+      EndTime:dt.setUTCHours(SatEndTimeArray[0],SatEndTimeArray[1])},
+      };
     let uName = req.body.Name;
     let uDescription = req.body.Description;
     let uWebsite = req.body.Website;
@@ -163,6 +203,7 @@ module.exports.editRestaurant = function (req, res) {
           Capacity: uCapacity,
           ImageLinks: uImageUrls,
           Menu: uMenuUrl,
+          HoursOfOperations:uHoursofOperations
         },
       },
       (err) => {
