@@ -103,13 +103,15 @@ exports.postAvailabilities = function(req, res) {
             }else{
             const capacityMap = new Map();
             for (const res of reservations){
+              if(res.Status === "confirmed"){
                 const testResDate = new Date(res.Date)
                 if(capacityMap.get(testResDate.getHours())){
-                    const currentCapcity = capacityMap.get(testResDate.getHours());
-                    capacityMap.set(testResDate.getHours(), res.NumberOfGuests + currentCapcity)
+                    const currentCapacity = capacityMap.get(testResDate.getHours());
+                    capacityMap.set(testResDate.getHours(), res.NumberOfGuests + currentCapacity)
                 }else{
                     capacityMap.set(testResDate.getHours(), res.NumberOfGuests)
                 }
+              }
             }
             for (let i = 0; i < hours.length; i++){
                 if(!capacityMap.get(hours[i])){
@@ -161,6 +163,7 @@ exports.postBooking = function(req, res, next) {
         NumberOfGuests: parseInt(req.body.Guests),
         Notes: req.body.Notes,
         TablesReserved: Math.round(parseInt(req.body.Guests) / 2),
+        Status: 'confirmed'
     });
     restaurant.updateOne({ _id: id }, {$push: {Reservations: reservation}}, (err) => {
         if (err) {
@@ -239,38 +242,21 @@ exports.getEditBooking = function (req, res, next) {
 exports.postEditBooking = function (req, res, next) {
     //needs the id of the reservation, not restaurant
     let id = req.params.id;
-
-    let reservation = ({
-      Guest: req.body.Name,
-      Phone: req.body.Phone,
-      Email: req.body.Email,
-      Date: Date.parse(req.body.Date),
-      NumberOfGuests: parseInt(req.body.Guests),
-      Notes: req.body.Notes,
-      TablesReserved: parseInt(req.body.Guests) / 2,
-    });
   
-    restaurant.findOne({ "Reservations._id": id }, (err, reservationDetails) => {
-      let i = 0;
-  
-      if (err) {
-        console.log(err);
-        res.end(err);
-      } else {
-        //user wants to modify
+    //     //user wants to modify
         if (req.body.choice == 1) {
-          reservationDetails.Reservations.every(element => {
-            let idCheck = String(element._id);
-            let idCurrent = String(id);
-            if (idCheck !== idCurrent) {
-              i++;
-              return true;
-            }
-
-            reservationDetails.Reservations[i] = reservation;
-            reservationDetails.Reservations[i]._id = id;
+          let reservation = ({
+            Guest: req.body.Name,
+            Phone: req.body.Phone,
+            Email: req.body.Email,
+            Date: Date.parse(req.body.Date),
+            NumberOfGuests: parseInt(req.body.Guests),
+            Notes: req.body.Notes,
+            TablesReserved: parseInt(req.body.Guests) / 2,
+            Status: 'confirmed'
+          });
   
-            restaurant.updateOne({ "Reservations._id": id }, { $set: { Reservations: reservationDetails.Reservations } }, (err) => {
+            restaurant.updateOne({ "Reservations._id": id }, { $set: { 'Reservations.$': reservation } }, (err) => {
               if (err) {
                 console.log(err);
                 res.end(err);
@@ -278,13 +264,24 @@ exports.postEditBooking = function (req, res, next) {
                 res.redirect('/');
               }
             });
-            return false;
-          });
+          //   return false;
+          // });
         }
+      
   
         //user wants to cancel
         if (req.body.choice == 2) {
-          restaurant.updateOne({ "Reservations._id": id }, { $pull: { Reservations: { _id: id } } }, (err) => {
+          let reservation = ({
+            Guest: req.body.Name,
+            Phone: req.body.Phone,
+            Email: req.body.Email,
+            Date: Date.parse(req.body.Date),
+            NumberOfGuests: parseInt(req.body.Guests),
+            Notes: req.body.Notes,
+            TablesReserved: parseInt(req.body.Guests) / 2,
+            Status: 'cancelled'
+          });
+          restaurant.updateOne({ "Reservations._id": id }, {$set: { 'Reservations.$.Status': 'cancelled' } }, (err) => {
             if (err) {
               console.log(err);
               res.end(err);
@@ -298,24 +295,13 @@ exports.postEditBooking = function (req, res, next) {
         if(req.body.choice == 3) {
           res.redirect('/');
         }
-      }
-    });
 }
 
 exports.deleteBooking = function (req, res, next) {
   let reservationId = req.params.reservationId;
   let restaurantId = req.params.restaurantId;
-
-  console.log(reservationId);
-  console.log(restaurantId);
-
-  console.log('test')
   
-  const reslt = restaurant.updateOne({
-    '_id': ObjectId(restaurantId)
-  }, {
-    $pull: { Reservations: { _id: ObjectId(reservationId) } }
-  }, function (error, result) { 
+  const reslt = restaurant.updateOne({ "Reservations._id": reservationId }, {$set: { 'Reservations.$.Status': 'cancelled' } }, function (error, result) { 
     if(error){
       console.log(err)
     }

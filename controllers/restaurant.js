@@ -187,7 +187,6 @@ module.exports.editRestaurant = function (req, res) {
     let uPhone = req.body.Phone;
     let uCapacity = req.body.Capacity;
     uImageUrls = req.body.ImageLinks.split(",");
-    //console.log(uImageUrls);
     let uMenuUrl = req.body.Menu;
 
     RestaurantModel.findByIdAndUpdate(

@@ -16,7 +16,8 @@
       <div class="container">
         <form method="POST">
           <div class="p-1 text-center">
-            <h4 class="display-6">Booking Details</h4>
+            <h4 class="display-6">Modify Customer Details</h4>
+            <h6>Requests to change number of guests, date or time are subject to availability. Please cancel and rebook guest for these requests.</h6>
           </div>
           <div class="row">
             <div class="col">
@@ -37,27 +38,33 @@
               <input type="email" class="form-control" id="Email" placeholder="Enter email" name="Email"
                 value="<%= reservation.Email %>">
             </div>
+            <!-- <div class="col">
+              <label for="time" class="form-label">Reservation Date and Time:</label>
+              <input class="form-control" id="Time" readonly="readonly" value="<%= restaurant.Reservations[0].Date.toLocaleString("en-US", {weekday: "short", month:"long", day: "numeric", year:"2-digit", hour:"numeric", minute:"2-digit", hour12: true}) %>" name="Time">
+            </div> -->
             <div class="col">
               <label for="phone" class="form-label">Booking Date:</label>
-              <input type="date" class="form-control" id="Date" name="Date" value="<%= resDate %>">
+              <input type="date" class="form-control" id="Date" name="Date" readonly="readonly" value="<%= resDate %>">
             </div>
           </div>
           </br>
           <div class="row">
             <div class="col">
               <label for="phone" class="form-label">Number of Guests:</label>
-              <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests"
+              <input type="number" readonly="readonly" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" 
                 max="20" min="1" value="<%= reservation.NumberOfGuests %>">
             </div>
           </div>
           <div class="mb-3 mt-3">
             <label for="notes">Additional Notes:</label>
-            <textarea class="form-control" rows="5" id="Notes" name="Notes" value="<%= reservation.Notes %>"></textarea>
+            <textarea class="form-control" rows="5" id="Notes" name="Notes" placeholder="<%= reservation.Notes %>"value="<%= reservation.Notes %>"></textarea>
+            <%=console.log("reservation.Notes", reservation.Notes)%>
           </div>
           <div class="row">
             <div class="col">
-              <button name="choice" type="submit" class="btn btn-primary" value='1'>Modify</button>
-              <button name="choice" type="submit" class="btn btn-danger" value='2'>Delete</button>
+              <button name="choice" type="submit" class="btn btn-primary" value='1'>Modify Reservation</button>
+              <button name="choice" type="submit" class="btn btn-danger" value='2'>Cancel Reservation</button>
+              <button name="choice" type="submit" class="btn btn-secondary" value='3'>Return to Home Page </button>
             </div>
           </div>
         </form>
