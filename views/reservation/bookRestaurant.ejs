@@ -10,7 +10,7 @@
           <h3 ><%= restaurant.Name %></h3>
           </div>
           <label for="name" class="form-label">Name:</label>
-          <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name" minlength="3" maxlength="15" title="Enter Name" required ><span class="validity"></span>
+          <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name" minlength="3" maxlength="35" title="Enter Name" required ><span class="validity"></span>
         </div>
         <div class="mb-3 mt-3">
             <label for="Phone" class="form-label">Phone:</label> 
@@ -39,8 +39,12 @@
           </div>
           <div style="text-align:center">
             <button  type="submit" class="btn btn-secondary">Confirm Reservation</button>
+            <div class="btn btn-secondary">
+              <a href="/reservation/availability/<%=restaurant._id%>">
+                Change Reservation
+              </div>
           </div>
-        
+        </a>
       </form>
       </body>
       <br>

@@ -12,6 +12,7 @@ let restaurantModel = mongoose.Schema(
     Menu:String,
     CuisineTags: [String],
     Status: String,
+    Seatings: [Number],
     Reservations: [new mongoose.Schema({
       Guest: String,
       Email: String,

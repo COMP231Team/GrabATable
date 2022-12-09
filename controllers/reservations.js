@@ -95,7 +95,7 @@ exports.postAvailabilities = function(req, res) {
                 return res.Date >= requestedDate
             });
             const availabilityMap = new Map();
-            const hours = [11, 13, 17, 19, 21];
+            const hours = restaurantDetails.Seatings;
             if(reservations.length === 0){
                 for (let i = 0; i < hours.length; i++){
                     availabilityMap.set(hours[i], restaurantDetails.Capacity)
@@ -231,7 +231,7 @@ exports.getEditBooking = function (req, res, next) {
       let cast = new Date(Date.parse(reserve.Date));
       let fixedDate = cast.toISOString();
       fixedDate = fixedDate.split("T");
-      res.render('reservation/editBooking', { title: reserve.Name, reservation: reserve, resDate: fixedDate[0], restaurantName: reservationDetails.Name });
+      res.render('reservation/editBooking', { title: reserve.Name, reservation: reserve, resDate: fixedDate[0], restaurantName: reservationDetails.Name, restaurant: reservationDetails });
     }
   });
 }
@@ -266,7 +266,7 @@ exports.postEditBooking = function (req, res, next) {
               i++;
               return true;
             }
-  
+
             reservationDetails.Reservations[i] = reservation;
             reservationDetails.Reservations[i]._id = id;
   
