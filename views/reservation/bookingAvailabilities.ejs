@@ -14,7 +14,8 @@
     <div class="container"style="width:60%; text-align:center ">
           <% if(availableTimes) {%>
             <% for(let [key, value] of availableTimes.entries()) { %>
-                <div><span class="text-left col-12"><input type="text" readonly="readonly" id="timeslot" name="timeslot" value="<%=key %>:00"  ></sp>
+                <div><span class="text-left col-12"><input type="text" readonly="readonly" id="timeslot" name="timeslot" 
+                  value="<%= new Date(0,0,0,key).toLocaleString('en-US', {hour:'numeric', minute:'2-digit', hour12: true}) %>"  ></sp>
                 <a href="/reservation/book/<%=restaurant.id%>/<%=date%>/<%=key%>/<%=guests%>" class="btn btn-secondary my-2">Reserve Time</a>
                 </div>
                 <% } %>
