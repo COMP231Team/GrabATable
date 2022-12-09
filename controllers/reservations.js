@@ -177,7 +177,7 @@ exports.postBooking = function(req, res, next) {
             secure: false,
             auth: {
               user: "apikey",
-              pass: "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"
+              pass: "***REMOVED***"
             },
           });
 
@@ -189,7 +189,7 @@ exports.postBooking = function(req, res, next) {
               var dateString= new Date(reservation.Date);
               var message = {
                 to: reservation.Email,
-                from: "team.Comp.231@gmail.com",
+                from: "abi.manoharan97@gmail.com",
                 subject: "Booking confirmed!",
                 text: "Your Reservation Details",
                 html: "<h3>Hello, "+reservation.Guest+"!</h3> <p>Your booking for "+restaurantDetails.Name+" on "+dateString.toString()+" has been confirmed! Press this <a href='http://localhost:3000/reservation/delete/"+reservationId+"&"+id+"'>link</a> anytime to cancel!\n</p><p>Thank you, </br>The Grab A Table Team</p>"                
