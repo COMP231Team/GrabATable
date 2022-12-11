@@ -1,44 +1,36 @@
 <%- include('../partials/header'); %>
 <%- include('../partials/navbarCustomer'); %>
 
-<main role="main">
-
-    <section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading"><restaurant.Name></h1>
-        <p class="lead">Look for an available table below!</p>
-    </div>
-    </section>
-
-    <div class="album py-5 bg-light" >
-    <div class="container"style="width:60%; text-align:center ">
-          <% if(availableTimes) {%>
-            <% for(let [key, value] of availableTimes.entries()) { %>
-                <div><span class="text-left col-12"><input type="text" readonly="readonly" id="timeslot" name="timeslot" 
-                  value="<%= new Date(0,0,0,key).toLocaleString('en-US', {hour:'numeric', minute:'2-digit', hour12: true}) %>"  ></sp>
-                <a href="/reservation/book/<%=restaurant.id%>/<%=date%>/<%=key%>/<%=guests%>" class="btn btn-secondary my-2">Reserve Time</a>
+<div class="py-5 my-2 bg-light container text-center" >
+<div class="jumbotron">
+  <h4 class="display-6 mb-4">Available Tables</h4>
+  <h6 class="mb-4">For reservations with more than 6 guests please contact the restaurant directly.</h6>
+      <% if(availableTimes) {%>
+        <% for(let [key, value] of availableTimes.entries()) { %>
+          
+            <div><span class="text-left col-12"><input type="text" readonly="readonly" id="timeslot" name="timeslot" 
+              value="<%= new Date(0,0,0,key).toLocaleString('en-US', {hour:'numeric', minute:'2-digit', hour12: true}) %>"  ></sp>
+            <a href="/reservation/book/<%=restaurant.id%>/<%=date%>/<%=key%>/<%=guests%>" class="btn btn-secondary my-2">Reserve Time</a>
+            </div>
+            <% } %>
+        <% } else { %>
+            <form  method="POST" class="px-5">
+              <div class="p-1 mb-5 text-center">
+                <div class="mb-3 mt-3">
+                <label for="Date" class="form-label" style="float:left">Booking Date:</label>
+                <input type="date" class="form-control" id="Date" name="Date" title="Please Choose a Date" required ><span class="validity"></span>
                 </div>
-                <% } %>
-            <% } else { %>
-                <form  method="POST">
-                    <div class="mb-3 mt-3">
-                      <h6>For reservations with more than 6 guests please contact the restaurant directly.</h6>
-                    <label for="Date" class="form-label" style="float:left">Booking Date:</label>
-                    <input type="date" class="form-control" id="Date" name="Date" title="Please Choose a Date" required ><span class="validity"></span>
-                  </div>
-                  <div class="mb-3 mt-3">
-                    <label for="Guests" class="form-label" style="float:left">Number of Guests:</label>
-                    <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="6" min="1" title="Please Choose number of guests" required><span class="validity"></span>
-                  </div>
-                  <div style="text-align: center; margin:2em;">
-                    <button type="submit" class="btn btn-secondary">Show Available Times</button>
-                  </div>
-                    
-                </form>
-                <% } %>
-    </div>
-    </div>
-
-</main>
+                <div class="mb-3 mt-3">
+                  <label for="Guests" class="form-label" style="float:left">Number of Guests:</label>
+                  <input type="number" class="form-control" id="Guests" placeholder="Enter number of Guests" name="Guests" max="6" min="1" title="Please Choose number of guests" required><span class="validity"></span>
+                </div>
+                <div style="text-align: center; margin:2em;">
+                  <button type="submit" class="btn btn-secondary">Show Available Times</button>
+                </div>
+              </div>
+            </form>
+            <% } %>
+</div>
+</div>
       
 <%- include('../partials/footer.ejs'); %>

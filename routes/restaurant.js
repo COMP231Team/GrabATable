@@ -17,9 +17,6 @@ router.get('/edit/:id', controllerRestaurant.editRestaurant);
 router.get('/details/:id', controllerRestaurant.detailsOfRestaurant);
 
 
-
-//router.put('/edit/:id', controllerRestaurant.editRestaurant);
-
 router.post('/edit/:id', controllerRestaurant.editRestaurant);
 // ------------------------
 // TODO : view restaurant details

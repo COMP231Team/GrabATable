@@ -243,65 +243,58 @@ exports.postEditBooking = function (req, res, next) {
     //needs the id of the reservation, not restaurant
     let id = req.params.id;
   
-    //     //user wants to modify
-        if (req.body.choice == 1) {
-          let reservation = ({
-            Guest: req.body.Name,
-            Phone: req.body.Phone,
-            Email: req.body.Email,
-            Date: Date.parse(req.body.Date),
-            NumberOfGuests: parseInt(req.body.Guests),
-            Notes: req.body.Notes,
-            TablesReserved: parseInt(req.body.Guests) / 2,
-            Status: 'confirmed'
-          });
-  
-            restaurant.updateOne({ "Reservations._id": id }, { $set: { 'Reservations.$': reservation } }, (err) => {
-              if (err) {
-                console.log(err);
-                res.end(err);
-              } else {
-                res.redirect('/');
-              }
-            });
-          //   return false;
-          // });
-        }
-      
-  
-        //user wants to cancel
-        if (req.body.choice == 2) {
-          let reservation = ({
-            Guest: req.body.Name,
-            Phone: req.body.Phone,
-            Email: req.body.Email,
-            Date: Date.parse(req.body.Date),
-            NumberOfGuests: parseInt(req.body.Guests),
-            Notes: req.body.Notes,
-            TablesReserved: parseInt(req.body.Guests) / 2,
-            Status: 'cancelled'
-          });
-          restaurant.updateOne({ "Reservations._id": id }, {$set: { 'Reservations.$.Status': 'cancelled' } }, (err) => {
-            if (err) {
-              console.log(err);
-              res.end(err);
-            } else {
-              res.redirect('/');
-            }
-          });
-        }
-  
-        //user wants to go back to the homepage
-        if(req.body.choice == 3) {
+    //user wants to modify
+    if (req.body.choice == 1) {
+      let reservation = ({
+        Guest: req.body.Name,
+        Phone: req.body.Phone,
+        Email: req.body.Email,
+        Date: Date.parse(req.body.Date),
+        NumberOfGuests: parseInt(req.body.Guests),
+        Notes: req.body.Notes,
+        TablesReserved: parseInt(req.body.Guests) / 2,
+        Status: 'confirmed'
+      });
+
+      restaurant.updateOne({ "Reservations._id": id }, { $set: { 'Reservations.$': reservation } }, (err) => {
+        if (err) {
+          console.log(err);
+          res.end(err);
+        } else {
           res.redirect('/');
         }
+      });
+    }
+  
+
+    //user wants to cancel
+    if (req.body.choice == 2) {
+      let reservation = ({
+        Guest: req.body.Name,
+        Phone: req.body.Phone,
+        Email: req.body.Email,
+        Date: Date.parse(req.body.Date),
+        NumberOfGuests: parseInt(req.body.Guests),
+        Notes: req.body.Notes,
+        TablesReserved: parseInt(req.body.Guests) / 2,
+        Status: 'cancelled'
+      });
+      restaurant.updateOne({ "Reservations._id": id }, {$set: { 'Reservations.$.Status': 'cancelled' } }, (err) => {
+        if (err) {
+          console.log(err);
+          res.end(err);
+        } else {
+          res.redirect('/');
+        }
+      });
+    }
 }
 
 exports.deleteBooking = function (req, res, next) {
   let reservationId = req.params.reservationId;
   let restaurantId = req.params.restaurantId;
   
-  const reslt = restaurant.updateOne({ "Reservations._id": reservationId }, {$set: { 'Reservations.$.Status': 'cancelled' } }, function (error, result) { 
+  const result = restaurant.updateOne({ "Reservations._id": reservationId }, {$set: { 'Reservations.$.Status': 'cancelled' } }, function (error, result) { 
     if(error){
       console.log(err)
     }
@@ -311,14 +304,12 @@ exports.deleteBooking = function (req, res, next) {
   });
 
   try {
-    reslt.exec;
+    result.exec;
   }
   catch (err) {
     console.log(err)
   }
-
-  res.render('reservation/bookingCancelConfirmation', {title: ''})
-
+  res.render('reservation/bookingCancelConfirmation', {title: 'Booking Cancelled'})
 }
 
 // VENDOR
@@ -335,10 +326,12 @@ exports.reservationDashboard = function(req, res) {
         // Convert Data into Frequency Data
         let reservationData = {};
         restaurantDetails.Reservations.forEach(reservation => {
-          if (reservation.Date in reservationData) {
-            reservationData[reservation.Date] ++;
+          const options = { year: '2-digit', month: 'short', day: '2-digit' };
+          let reservationDate = new Date(reservation.Date).toLocaleString("en-US", options);
+          if (reservationDate in reservationData) {
+            reservationData[reservationDate] ++;
           } else {
-            reservationData[reservation.Date] = 1;
+            reservationData[reservationDate] = 1;
           }
         });
 

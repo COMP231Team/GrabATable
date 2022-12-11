@@ -1,8 +1,8 @@
 <%- include('../partials/header'); %>
-<%- include('../partials/navbarCustomer'); %>
+<%- include('../partials/navbarVendor'); %>
 
 <div class="mt-4 mb-5 container grey-border">
-  <h1 class="my-3 text-center">Restaurant Details</h1>
+  <h1 class="my-3 text-center display-6 ">Restaurant Details</h1>
   <form method="POST" class=" my-2 mx-4">
     <div class="mb-3 mt-3">
       <label for="name" class="form-label">Name of Restaurant:</label>
@@ -225,10 +225,9 @@
     </div>
 
     <button type="submit" class="btn btn-secondary">Submit</button>
-    <div class="btn btn-secondary">
-      <a href="/">
-        Return to Home Page
-      </div>
+    <a class="btn btn-outline-secondary" href="/reservations/list/<%= restaurant._id %>">
+      Return to Reservations
+    </a>
   </form>
 </div>
 

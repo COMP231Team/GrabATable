@@ -1,13 +1,14 @@
 <%- include('../partials/header'); %>
 <%- include('../partials/navbarCustomer'); %>
 
-    <div class="container" style="width:60%">
+    <div class="container mb-5 mt-3" style="width:60%">
+      <div class="jumbotron bg-light px-5 pb-4">
       <br>
       <body>
       <form  method="POST">
         <div class="my-3">
           <div style="text-align: center;">
-          <h3 ><%= restaurant.Name %></h3>
+          <h3 class="display-6">Book with <%= restaurant.Name %>!</h3>
           </div>
           <label for="name" class="form-label">Name:</label>
           <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name" minlength="3" maxlength="35" title="Enter Name" required ><span class="validity"></span>
@@ -39,7 +40,7 @@
           </div>
           <div style="text-align:center">
             <button  type="submit" class="btn btn-secondary">Confirm Reservation</button>
-            <div class="btn btn-secondary">
+            <div class="btn btn-outline-secondary">
               <a href="/reservation/availability/<%=restaurant._id%>">
                 Change Reservation
               </div>
@@ -47,10 +48,7 @@
         </a>
       </form>
       </body>
-      <br>
-      <br>
-      <br>
-      <br>
+    </div>
     </div>
     
 <%- include('../partials/footer'); %>
