@@ -2,12 +2,20 @@ var reservationData = JSON.parse(chart);
 var restaurantData = JSON.parse(restaurant);
 
 // chart.js
-const options = { year: '2-digit', month: 'short', day: '2-digit' };
+var arrayReservationData = [];
+for (var key in reservationData) {
+    arrayReservationData.push([key, reservationData[key]]);
+}
+
+arrayReservationData.sort((a,b) => {
+    return new Date(a[0]) - new Date(b[0]);
+});
+
 const data = {
-    labels: Object.keys(reservationData).map(key => new Date(key).toLocaleString("en-US", options)),
+    labels: arrayReservationData.map(item => item[0]),
     datasets: [{
         label: 'Reservations By Date',
-        data: Object.values(reservationData),
+        data: arrayReservationData.map(item => item[1]),
         borderColor: 'rgb(75, 192, 192)',
         tension: 0,
       }]
