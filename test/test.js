@@ -56,7 +56,7 @@ describe("Controller", function() {
             });
         });
 
-        it("Rendered Vendor Reservation List", done => {
+        it("Rendered Vendor Reservation Dashboard", done => {
             chai.request(app)
             .get("/reservation/dashboard/6376bdac6e8f50a726373917")
             .end((err, res) => {
