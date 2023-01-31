@@ -3,6 +3,7 @@ let restaurant = require('../models/restaurant');
 let nodemailer = require('nodemailer');
 let mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectId
+let DB = require('./db.js');
 
 exports.buffer =  function(req, res) {
   res.render('reservation/buffer', { 
@@ -177,7 +178,7 @@ exports.postBooking = function(req, res, next) {
             secure: false,
             auth: {
               user: "apikey",
-              pass: "***REMOVED***"
+              pass: DB.PASS
             },
           });
 
