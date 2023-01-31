@@ -177,7 +177,7 @@ exports.postBooking = function(req, res, next) {
             secure: false,
             auth: {
               user: "apikey",
-              pass: "***REMOVED***"
+              pass: "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"
             },
           });
 
