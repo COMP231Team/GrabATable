@@ -179,6 +179,7 @@ exports.postBooking = function(req, res, next) {
             auth: {
               user: "apikey",
               pass: DB.PASS
+
             },
           });
 
